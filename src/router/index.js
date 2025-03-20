@@ -1,10 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
-<<<<<<< HEAD
-import Gallery from "../components/Gallery.vue";
-=======
+import Gallery from "../views/Gallery.vue";
 
->>>>>>> 351e16819265f26ba2b2cb4210072644bff14afe
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -13,16 +10,12 @@ const router = createRouter({
       name: "home",
       component: HomeView,
     },
-<<<<<<< HEAD
+    {
+      path: "/gallery",
+      name: "Gallery",
+      component: Gallery,
+    },
   ],
 });
 
 export default router;
-=======
-
-    // component: () => import('../views/AboutView.vue'),
-  ],
-});
-
-export default router;
->>>>>>> 351e16819265f26ba2b2cb4210072644bff14afe

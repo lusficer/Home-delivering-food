@@ -2,13 +2,9 @@
   <div class="app-container">
     <div class="home-view">
       <NavBar />
-      <div class="content mb-5">
-        <Gallery />
-      </div>
+      <div class="content mb-5"></div>
     </div>
-    <div class="body">
-      <!-- Nội dung khác -->
-    </div>
+    <div class="body"></div>
   </div>
 </template>
 

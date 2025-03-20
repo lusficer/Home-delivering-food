@@ -1,167 +1,267 @@
-  <template>
-    <NavBar />
-    <div class="gallery-page">
-      <div class="header-section">
-        <div class="header-gallery">
-          <!-- Hàng 1: Marquee -->
-          <div class="header-gallery-marquee one">
-            <div class="header-gallery-marquee-wrap">
-              <div class="header-gallery-item"><img
-                  src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b9e94db52081be12b9abef_gallery-03.jpg"
-                  alt="Header image 1" /></div>
-              <div class="header-gallery-item"><img
-                  src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b9e950622443d977947f46_gallery-09.jpg"
-                  alt="Header image 2" /></div>
-              <div class="header-gallery-item"><img
-                  src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b9e95008217ff5cd72eb99_gallery-08.jpg"
-                  alt="Header image 3" /></div>
-              <div class="header-gallery-item"><img
-                  src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b9e94f2d42e49d8ca2a14c_gallery-04.jpg"
-                  alt="Header image 4" /></div>
-              <div class="header-gallery-item"><img
-                  src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b9e94f6d4f5f51223d4ad4_gallery-07.jpg"
-                  alt="Header image 5" /></div>
+<template>
+  <NavBar />
+  <div class="gallery-page">
+    <div class="header-section">
+      <div class="header-gallery">
+        <!-- Hàng 1: Marquee -->
+        <div class="header-gallery-marquee one">
+          <div class="header-gallery-marquee-wrap">
+            <div class="header-gallery-item">
+              <img
+                src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b9e94db52081be12b9abef_gallery-03.jpg"
+                alt="Header image 1"
+              />
             </div>
-            <div class="header-gallery-marquee-wrap">
-              <div class="header-gallery-item"><img
-                  src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b9e94db52081be12b9abef_gallery-03.jpg"
-                  alt="Header image 1" /></div>
-              <div class="header-gallery-item"><img
-                  src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b9e950622443d977947f46_gallery-09.jpg"
-                  alt="Header image 2" /></div>
-              <div class="header-gallery-item"><img
-                  src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b9e95008217ff5cd72eb99_gallery-08.jpg"
-                  alt="Header image 3" /></div>
-              <div class="header-gallery-item"><img
-                  src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b9e94f2d42e49d8ca2a14c_gallery-04.jpg"
-                  alt="Header image 4" /></div>
-              <div class="header-gallery-item"><img
-                  src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b9e94f6d4f5f51223d4ad4_gallery-07.jpg"
-                  alt="Header image 5" /></div>
+            <div class="header-gallery-item">
+              <img
+                src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b9e950622443d977947f46_gallery-09.jpg"
+                alt="Header image 2"
+              />
+            </div>
+            <div class="header-gallery-item">
+              <img
+                src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b9e95008217ff5cd72eb99_gallery-08.jpg"
+                alt="Header image 3"
+              />
+            </div>
+            <div class="header-gallery-item">
+              <img
+                src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b9e94f2d42e49d8ca2a14c_gallery-04.jpg"
+                alt="Header image 4"
+              />
+            </div>
+            <div class="header-gallery-item">
+              <img
+                src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b9e94f6d4f5f51223d4ad4_gallery-07.jpg"
+                alt="Header image 5"
+              />
             </div>
           </div>
-          <!-- Hàng 2: Marquee -->
-          <div class="header-gallery-marquee two">
-            <div class="header-gallery-marquee-wrap">
-              <div class="header-gallery-item"><img
-                  src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65c0942b735b354f9935d049_menu-gallery-09.jpg"
-                  alt="Header image 6" /></div>
-              <div class="header-gallery-item"><img
-                  src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65c09304fc0a99953ad4393d_menu-gallery-07.jpg"
-                  alt="Header image 7" /></div>
-              <div class="header-gallery-item"><img
-                  src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65c0930478c33935f5b6f4df_menu-gallery-03.jpg"
-                  alt="Header image 8" /></div>
-              <div class="header-gallery-item"><img
-                  src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65c09303c1b798cecfa620f0_menu-gallery-01.jpg"
-                  alt="Header image 9" /></div>
-              <div class="header-gallery-item"><img
-                  src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b9e94eba3a2662628e4612_bg-gallery-01.jpg"
-                  alt="Header image 10" /></div>
+          <div class="header-gallery-marquee-wrap">
+            <div class="header-gallery-item">
+              <img
+                src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b9e94db52081be12b9abef_gallery-03.jpg"
+                alt="Header image 1"
+              />
             </div>
-            <div class="header-gallery-marquee-wrap">
-              <div class="header-gallery-item"><img
-                  src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65c0942b735b354f9935d049_menu-gallery-09.jpg"
-                  alt="Header image 6" /></div>
-              <div class="header-gallery-item"><img
-                  src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65c09304fc0a99953ad4393d_menu-gallery-07.jpg"
-                  alt="Header image 7" /></div>
-              <div class="header-gallery-item"><img
-                  src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65c0930478c33935f5b6f4df_menu-gallery-03.jpg"
-                  alt="Header image 8" /></div>
-              <div class="header-gallery-item"><img
-                  src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65c09303c1b798cecfa620f0_menu-gallery-01.jpg"
-                  alt="Header image 9" /></div>
-              <div class="header-gallery-item"><img
-                  src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b9e94eba3a2662628e4612_bg-gallery-01.jpg"
-                  alt="Header image 10" /></div>
+            <div class="header-gallery-item">
+              <img
+                src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b9e950622443d977947f46_gallery-09.jpg"
+                alt="Header image 2"
+              />
+            </div>
+            <div class="header-gallery-item">
+              <img
+                src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b9e95008217ff5cd72eb99_gallery-08.jpg"
+                alt="Header image 3"
+              />
+            </div>
+            <div class="header-gallery-item">
+              <img
+                src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b9e94f2d42e49d8ca2a14c_gallery-04.jpg"
+                alt="Header image 4"
+              />
+            </div>
+            <div class="header-gallery-item">
+              <img
+                src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b9e94f6d4f5f51223d4ad4_gallery-07.jpg"
+                alt="Header image 5"
+              />
             </div>
           </div>
         </div>
-        <h1 class="gallery-title">NVBLAST GALLERY</h1>
-      </div>
-      <div class="gallery-grid">
-        <div v-for="(image, index) in images" :key="index" class="gallery-item">
-          <img :src="image.src" :alt="image.alt" />
+        <!-- Hàng 2: Marquee -->
+        <div class="header-gallery-marquee two">
+          <div class="header-gallery-marquee-wrap">
+            <div class="header-gallery-item">
+              <img
+                src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65c0942b735b354f9935d049_menu-gallery-09.jpg"
+                alt="Header image 6"
+              />
+            </div>
+            <div class="header-gallery-item">
+              <img
+                src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65c09304fc0a99953ad4393d_menu-gallery-07.jpg"
+                alt="Header image 7"
+              />
+            </div>
+            <div class="header-gallery-item">
+              <img
+                src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65c0930478c33935f5b6f4df_menu-gallery-03.jpg"
+                alt="Header image 8"
+              />
+            </div>
+            <div class="header-gallery-item">
+              <img
+                src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65c09303c1b798cecfa620f0_menu-gallery-01.jpg"
+                alt="Header image 9"
+              />
+            </div>
+            <div class="header-gallery-item">
+              <img
+                src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b9e94eba3a2662628e4612_bg-gallery-01.jpg"
+                alt="Header image 10"
+              />
+            </div>
+          </div>
+          <div class="header-gallery-marquee-wrap">
+            <div class="header-gallery-item">
+              <img
+                src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65c0942b735b354f9935d049_menu-gallery-09.jpg"
+                alt="Header image 6"
+              />
+            </div>
+            <div class="header-gallery-item">
+              <img
+                src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65c09304fc0a99953ad4393d_menu-gallery-07.jpg"
+                alt="Header image 7"
+              />
+            </div>
+            <div class="header-gallery-item">
+              <img
+                src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65c0930478c33935f5b6f4df_menu-gallery-03.jpg"
+                alt="Header image 8"
+              />
+            </div>
+            <div class="header-gallery-item">
+              <img
+                src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65c09303c1b798cecfa620f0_menu-gallery-01.jpg"
+                alt="Header image 9"
+              />
+            </div>
+            <div class="header-gallery-item">
+              <img
+                src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b9e94eba3a2662628e4612_bg-gallery-01.jpg"
+                alt="Header image 10"
+              />
+            </div>
+          </div>
         </div>
       </div>
-
-      <div class="subscription-banner">
-        <h2 class="subscription-title">EXPLORE THE ART OF FINE DINING WITH OUR EXCEPTIONALLY CRAFTED MENUS</h2>
-        <p class="gold-text">Stay in the Know</p>
-        <p class="subscription-description">Get the latest on our seasonal menus and exclusive offers!</p>
-
-        <div class="subscription-form">
-          <input type="email" placeholder="Enter your email address" class="email-field" />
-          <button class="subscribe-btn">subscribe</button>
-        </div>
+      <h1 class="gallery-title">NVBLAST GALLERY</h1>
+    </div>
+    <div class="gallery-grid">
+      <div v-for="(image, index) in images" :key="index" class="gallery-item">
+        <img :src="image.src" :alt="image.alt" />
       </div>
     </div>
-  </template>
+
+    <div class="subscription-banner">
+      <h2 class="subscription-title">
+        EXPLORE THE ART OF FINE DINING WITH OUR EXCEPTIONALLY CRAFTED MENUS
+      </h2>
+      <p class="gold-text">Stay in the Know</p>
+      <p class="subscription-description">
+        Get the latest on our seasonal menus and exclusive offers!
+      </p>
+
+      <div class="subscription-form">
+        <input
+          type="email"
+          placeholder="Enter your email address"
+          class="email-field"
+        />
+        <button class="subscribe-btn">subscribe</button>
+      </div>
+    </div>
+  </div>
+</template>
 
 <script>
+import NavBar from "@/components/NavBar.vue";
 export default {
+  components: {
+    NavBar,
+  },
   data() {
     return {
       images: [
-        { src: 'https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b9e94e4a580c4a67b7e3d2_gallery-01.jpg', alt: 'Elegant dining setup' },
-        { src: 'https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b9e94d951a7d65be14579b_gallery-02.jpg', alt: 'Modern restaurant interior' },
-        { src: 'https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b9e94db52081be12b9abef_gallery-03.jpg', alt: 'Cozy restaurant seating' },
-        { src: 'https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65bb69578b57c5aa2c8400e1_CTA-01.jpg', alt: 'Modern restaurant with large windows' },
-        { src: 'https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b9e94e72ad0ab0efd6611c_gallery-05.jpg', alt: 'Shared meal with various dishes' },
-        { src: 'https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b9e94edc9ca65f9b09168a_gallery-06.jpg', alt: 'Indian cuisine spread' },
+        {
+          src: "https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b9e94e4a580c4a67b7e3d2_gallery-01.jpg",
+          alt: "Elegant dining setup",
+        },
+        {
+          src: "https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b9e94d951a7d65be14579b_gallery-02.jpg",
+          alt: "Modern restaurant interior",
+        },
+        {
+          src: "https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b9e94db52081be12b9abef_gallery-03.jpg",
+          alt: "Cozy restaurant seating",
+        },
+        {
+          src: "https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65bb69578b57c5aa2c8400e1_CTA-01.jpg",
+          alt: "Modern restaurant with large windows",
+        },
+        {
+          src: "https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b9e94e72ad0ab0efd6611c_gallery-05.jpg",
+          alt: "Shared meal with various dishes",
+        },
+        {
+          src: "https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b9e94edc9ca65f9b09168a_gallery-06.jpg",
+          alt: "Indian cuisine spread",
+        },
       ],
     };
   },
   mounted() {
     // Kiểm tra xem gsap có tồn tại không
-    if (typeof gsap === 'undefined') {
-      console.error('GSAP is not loaded. Please ensure GSAP is included via CDN or npm.');
+    if (typeof gsap === "undefined") {
+      console.error(
+        "GSAP is not loaded. Please ensure GSAP is included via CDN or npm."
+      );
       return;
     }
 
     // Thiết lập marquee vô hạn cho hàng 1
-    const marqueeOne = document.querySelector('.header-gallery-marquee.one');
-    const marqueeOneWraps = marqueeOne.querySelectorAll('.header-gallery-marquee-wrap');
+    const marqueeOne = document.querySelector(".header-gallery-marquee.one");
+    const marqueeOneWraps = marqueeOne.querySelectorAll(
+      ".header-gallery-marquee-wrap"
+    );
 
     // Đặt vị trí ban đầu cho wrap thứ hai
-    gsap.set(marqueeOneWraps[1], { x: '100%' });
+    gsap.set(marqueeOneWraps[1], { x: "100%" });
 
     // Tạo timeline cho animation mượt mà
     const marqueeTimeline1 = gsap.timeline({ repeat: -1 });
 
     marqueeTimeline1
-      .to(marqueeOneWraps[0], { x: '-100%', duration: 20, ease: 'none' }, 0)
-      .to(marqueeOneWraps[1], { x: '0%', duration: 20, ease: 'none' }, 0)
+      .to(marqueeOneWraps[0], { x: "-100%", duration: 20, ease: "none" }, 0)
+      .to(marqueeOneWraps[1], { x: "0%", duration: 20, ease: "none" }, 0)
       .add(() => {
-        gsap.set(marqueeOneWraps[0], { x: '100%' });
+        gsap.set(marqueeOneWraps[0], { x: "100%" });
       })
-      .to(marqueeOneWraps[0], { x: '0%', duration: 20, ease: 'none' })
-      .to(marqueeOneWraps[1], { x: '-100%', duration: 20, ease: 'none' }, '-=20')
+      .to(marqueeOneWraps[0], { x: "0%", duration: 20, ease: "none" })
+      .to(
+        marqueeOneWraps[1],
+        { x: "-100%", duration: 20, ease: "none" },
+        "-=20"
+      )
       .add(() => {
-        gsap.set(marqueeOneWraps[1], { x: '100%' });
+        gsap.set(marqueeOneWraps[1], { x: "100%" });
       });
 
     // Thiết lập marquee vô hạn cho hàng 2 (hướng ngược lại)
-    const marqueeTwo = document.querySelector('.header-gallery-marquee.two');
-    const marqueeTwoWraps = marqueeTwo.querySelectorAll('.header-gallery-marquee-wrap');
+    const marqueeTwo = document.querySelector(".header-gallery-marquee.two");
+    const marqueeTwoWraps = marqueeTwo.querySelectorAll(
+      ".header-gallery-marquee-wrap"
+    );
 
     // Đặt vị trí ban đầu cho wrap thứ hai
-    gsap.set(marqueeTwoWraps[1], { x: '-100%' });
+    gsap.set(marqueeTwoWraps[1], { x: "-100%" });
 
     // Tạo timeline cho animation mượt mà
     const marqueeTimeline2 = gsap.timeline({ repeat: -1 });
 
     marqueeTimeline2
-      .to(marqueeTwoWraps[0], { x: '100%', duration: 15, ease: 'none' }, 0)
-      .to(marqueeTwoWraps[1], { x: '0%', duration: 15, ease: 'none' }, 0)
+      .to(marqueeTwoWraps[0], { x: "100%", duration: 15, ease: "none" }, 0)
+      .to(marqueeTwoWraps[1], { x: "0%", duration: 15, ease: "none" }, 0)
       .add(() => {
-        gsap.set(marqueeTwoWraps[0], { x: '-100%' });
+        gsap.set(marqueeTwoWraps[0], { x: "-100%" });
       })
-      .to(marqueeTwoWraps[0], { x: '0%', duration: 15, ease: 'none' })
-      .to(marqueeTwoWraps[1], { x: '100%', duration: 15, ease: 'none' }, '-=15')
+      .to(marqueeTwoWraps[0], { x: "0%", duration: 15, ease: "none" })
+      .to(marqueeTwoWraps[1], { x: "100%", duration: 15, ease: "none" }, "-=15")
       .add(() => {
-        gsap.set(marqueeTwoWraps[1], { x: '-100%' });
+        gsap.set(marqueeTwoWraps[1], { x: "-100%" });
       });
   },
 };
@@ -230,7 +330,7 @@ export default {
 }
 
 .header-section::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -241,7 +341,7 @@ export default {
 }
 
 .gallery-title {
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
   font-size: 4em;
   font-weight: 400;
   text-transform: uppercase;
@@ -294,7 +394,7 @@ export default {
 }
 
 .subscription-title {
-  font-family: 'Times New Roman', serif;
+  font-family: "Times New Roman", serif;
   font-size: 48px;
   font-weight: 300;
   text-transform: uppercase;
@@ -307,7 +407,7 @@ export default {
 }
 
 .gold-text {
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
   color: #ffc107;
   font-size: 24px;
   font-style: italic;
