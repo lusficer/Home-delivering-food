@@ -14,7 +14,7 @@
 
 <script>
 import NavBar from "../components/NavBar.vue";
-
+import Gallery from "../views/Gallery.vue";
 export default {
   components: {
     NavBar,
