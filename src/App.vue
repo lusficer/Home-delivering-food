@@ -1,22 +1,24 @@
-<script setup>
+<script >
 import { RouterLink, RouterView } from "vue-router";
 import "/node_modules/primeflex/primeflex.css";
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
+   <div>
+    <HeroSection />
+    <ReservationForm />
+  </div>
   <RouterView />
 </template>
+<script>
+import HeroSection from "./components/HeroSection.vue";  // Phần giới thiệu trang
+import ReservationForm from "./components/ReservationForm.vue";  // Form đặt bàn
+
+export default {
+  components: {
+    HeroSection,
+    ReservationForm,
+  },
+};
+</script>
 <style></style>
