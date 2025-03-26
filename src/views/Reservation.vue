@@ -1,39 +1,69 @@
 <template>
-  <div class="reservation-form">
-    <h2>Make a Reservation</h2>
-    <form @submit.prevent="submitReservation">
-      <label>Name:</label>
-      <input v-model="name" required />
-      
-      <label>Date:</label>
-      <input type="date" v-model="date" required />
-      
-      <label>Time:</label>
-      <input type="time" v-model="time" required />
-
-      <button type="submit">Book Now</button>
-    </form>
+  <div class="hero-section">
+    <div class="overlay">
+      <div class="content">
+        <h3 class="welcome-text">Welcome to NVBlast</h3>
+        <p class="description">
+          Our streamlined reservation process ensures you have the perfect spot waiting for you, 
+          allowing you to focus on relishing every moment of our exceptional culinary offerings. 
+          Reserve now and let the anticipation of an exquisite dining adventure begin!
+        </p>
+        <h1 class="main-title">YOUR GATEWAY TO CULINARY EXCELLENCE</h1>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
-
-const name = ref("");
-const date = ref("");
-const time = ref("");
-
-const submitReservation = () => {
-  console.log("Reservation submitted:", { name: name.value, date: date.value, time: time.value });
-};
 </script>
 
 <style scoped>
-.reservation-form {
-  max-width: 400px;
-  margin: auto;
+/* Đảm bảo section full màn hình */
+.hero-section {
+  position: relative;
+  width: 100vw;  /* Chiều rộng 100% màn hình */
+  height: 100vh; /* Chiều cao 100% màn hình */
+  background: url("/image.png") center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Lớp phủ tối giúp chữ dễ đọc hơn */
+.overlay {
+  background: rgba(0, 0, 0, 0.6); /* Lớp phủ mờ */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Khối chứa nội dung */
+.content {
+  max-width: 800px;
   padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+  color: white;
+}
+
+/* Tiêu đề nhỏ */
+.welcome-text {
+  font-size: 20px;
+  color: gold;
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+/* Đoạn mô tả */
+.description {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+/* Tiêu đề chính */
+.main-title {
+  font-size: 40px;
+  font-weight: bold;
 }
 </style>
