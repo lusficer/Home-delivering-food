@@ -101,7 +101,7 @@ export default {
 
 .rounded {
   border-radius: 200px 200px 0 0;
-  top: 25%;
+  top: 18%;
 }
 
 .p-button-rounded {
