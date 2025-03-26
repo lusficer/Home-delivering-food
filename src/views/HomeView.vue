@@ -5,16 +5,20 @@
       <div class="content mb-5"></div>
     </div>
     <div class="body"></div>
+    <Footer />
   </div>
 </template>
 
 <script>
 import NavBar from "../components/NavBar.vue";
 import Gallery from "../views/Gallery.vue";
+import Footer from "../components/Footer.vue";
+
 export default {
   components: {
     NavBar,
     Gallery,
+    Footer,
   },
 };
 </script>
