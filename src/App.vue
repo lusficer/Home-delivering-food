@@ -11,16 +11,15 @@ import "/node_modules/primeflex/primeflex.css";
     <HeroSection />
     <ReservationForm />
   </div> -->
-  <RouterView />
 </template>
 <script>
-import HeroSection from "./components/HeroSection.vue"; // Phần giới thiệu trang
-import ReservationForm from "./components/ReservationForm.vue"; // Form đặt bàn
+// import HeroSection from "./components/HeroSection.vue"; // Phần giới thiệu trang
+// import ReservationForm from "./components/ReservationForm.vue"; // Form đặt bàn
 
 export default {
   components: {
-    HeroSection,
-    ReservationForm,
+    // HeroSection,
+    // ReservationForm,
   },
 };
 </script>
