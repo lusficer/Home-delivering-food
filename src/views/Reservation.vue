@@ -80,6 +80,7 @@
     </div>
 
     <!-- Image Section -->
+     <!--chỗ này thêm ảnh nha-->
     <div class="image-container">
       <img src="" alt="Dining Setup" class="contact-image" />
     </div>
@@ -90,6 +91,23 @@
       <p>Mon - Sat: 11:00 am - 10 pm</p>
       <p>Sun: 10:00 am - 12 pm</p>
     </div>
+  </div>
+
+  <!-- Follow on Instagram-->
+   <!-- chèn hình ảnh sau nha-->
+  <div class="instagram-section">
+    <h2 class="section-title">FOLLOW US ON INSTAGRAM</h2>
+    <div class="image-container">
+      <img src="" alt="Instagram Highlight" class="main-image" />
+    </div>
+    <div class="small-images">
+      <img src="" alt="Dish 1" class="circle-image" />
+      <img src="" alt="Dish 2" class="circle-image" />
+    </div>
+    <p class="description">
+      THE BEST SERVICE AND FOOD TYPICAL OF <span class="highlight">NVBLAST</span>, AS WELL AS A
+      NUMBER OF UNIQUE AND VALUABLE WORKS OF FOOD, AWAIT YOUR VISIT.
+    </p>
   </div>
 </template>
 
@@ -132,8 +150,8 @@ const submitForm = () => {
 
 /* Khối chứa nội dung */
 .content {
-  max-width: 800px;
-  padding: 20px;
+  max-width: 1000px;
+  padding: 25px;
   color: white;
 }
 
@@ -153,7 +171,7 @@ const submitForm = () => {
 
 /* Tiêu đề chính */
 .main-title {
-  font-size: 40px;
+  font-size: 50px;
   font-weight: bold;
 }
 
@@ -162,7 +180,7 @@ const submitForm = () => {
   width: 100%;
   display: flex;
   justify-content: center;
-  padding: 50px 20px;
+  padding: 20px 20px;
   background: #1a061e;
 }
 
@@ -262,5 +280,56 @@ const submitForm = () => {
 .contact-image {
   width: 80%;
   border-radius: 20px;
+}
+
+.instagram-section {
+  text-align: center;
+  background: #1a061e;
+  padding: 50px 20px;
+  color: white;
+}
+
+.section-title {
+  font-size: 32px;
+  color: gold;
+  margin-bottom: 20px;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+}
+
+.main-image {
+  width: 60%;
+  max-width: 600px;
+  border-radius: 30px;
+}
+
+.small-images {
+  display: flex;
+  justify-content: space-around;
+  margin-top: -50px;
+}
+
+.circle-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid gold;
+}
+
+.description {
+  font-size: 16px;
+  margin-top: 20px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.highlight {
+  color: purple;
+  font-weight: bold;
 }
 </style>
