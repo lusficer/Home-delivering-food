@@ -80,9 +80,9 @@
     </div>
 
     <!-- Image Section -->
-     <!--chỗ này thêm ảnh nha-->
+     
     <div class="image-container">
-      <img src="" alt="Dining Setup" class="contact-image" />
+      <img src="../../public/Beverage/cup-tea-with-dried-rose-frame-black-table_114579-78957.jpg" alt="Dining Setup" class="contact-image" />
     </div>
 
     <!-- Opening Hours -->
@@ -98,11 +98,11 @@
   <div class="instagram-section">
     <h2 class="section-title">FOLLOW US ON INSTAGRAM</h2>
     <div class="image-container">
-      <img src="" alt="Instagram Highlight" class="main-image" />
+      <img src="../../public/Beverage/delicious-coffee-cups-arrangement_23-2149600728.avif" alt="Instagram Highlight" class="main-image" />
     </div>
     <div class="small-images">
-      <img src="" alt="Dish 1" class="circle-image" />
-      <img src="" alt="Dish 2" class="circle-image" />
+      <img src="../../public/brunch(1).jpg" alt="Dish 1" class="circle-image" />
+      <img src="../../public/Brunch/Burrito(3).jpg" alt="Dish 2" class="circle-image" />
     </div>
     <p class="description">
       THE BEST SERVICE AND FOOD TYPICAL OF <span class="highlight">NVBLAST</span>, AS WELL AS A
@@ -131,7 +131,7 @@ const submitForm = () => {
 .hero-section {
   width: 100vw;
   height: 100vh;
-  background: url("/image.png") center/cover no-repeat;
+  background: url("../../public/Beverage.jpg") center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -139,7 +139,7 @@ const submitForm = () => {
 
 /* Lớp phủ tối giúp chữ dễ đọc hơn */
 .overlay {
-  background: rgba(0, 0, 0, 0.6); /* Lớp phủ mờ */
+  background: #00000099; /* Lớp phủ mờ */
   width: 100%;
   height: 100%;
   display: flex;
@@ -213,7 +213,7 @@ const submitForm = () => {
 
 .input-box input {
   padding: 10px;
-  border: 1px solid purple;
+  border: 1px solid hwb(300 0% 50%);
   border-radius: 20px;
   background: transparent;
   color: white;
@@ -302,7 +302,7 @@ const submitForm = () => {
 
 .main-image {
   width: 60%;
-  max-width: 600px;
+  max-width: 1000px;
   border-radius: 30px;
 }
 
@@ -313,8 +313,8 @@ const submitForm = () => {
 }
 
 .circle-image {
-  width: 120px;
-  height: 120px;
+  width: 300px;
+  height: 250px;
   border-radius: 50%;
   object-fit: cover;
   border: 3px solid gold;
