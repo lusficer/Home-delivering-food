@@ -10,14 +10,19 @@ const router = createRouter({
       component: HomeView,
     },
     {
-      path: '/reservation',
-      name: 'Reservation',
-      component: () => import('../views/Reservation.vue'),
+      path: "/reservation",
+      name: "Reservation",
+      component: () => import("../views/Reservation.vue"),
     },
     {
-      path: '/gallery',
+      path: "/gallery",
       name: "Gallery",
-      component: ()=> import('../views/Gallery.vue'),
+      component: () => import("../views/Gallery.vue"),
+    },
+    {
+      path: "/menu",
+      name: "Menu",
+      component: () => import("../views/Menu.vue"),
     },
   ],
 });

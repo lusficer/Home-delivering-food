@@ -7,7 +7,7 @@
         <Button
           icon="pi pi-bars"
           size="large"
-          class="p-button-text color-orange border-none border-yellow-400 border-right-3 mr-8"
+          class="menu-button p-button-text color-orange border-none border-right-3 border-yellow-500 mr-8"
           @click="openPosition('top')"
         />
         <Dialog
@@ -107,42 +107,77 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .navbar {
   background: transparent !important;
   padding: 10px 20px;
   display: flex;
   align-items: center;
 }
+
 .right-section {
   display: flex;
   align-items: center;
   gap: 30px;
 }
+
 .brand {
   font-size: 1.5rem;
   font-weight: bold;
   color: #f9b233;
 }
+
 .search-bar {
   border: none;
   padding: 5px 10px;
   border-radius: 5px;
 }
+
 .search-icon {
   color: white;
   cursor: pointer;
 }
+
 .cart {
   color: white;
 }
+
 .reserve-button {
+  position: relative;
   background-color: #f9b233 !important;
   border: none !important;
   border-radius: 200px !important;
   color: black;
   font-weight: bold;
+  overflow: hidden;
+  z-index: 1;
+  transition: color 0.5s ease; /* Chỉ transition màu chữ */
 }
+
+.reserve-button::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background-color: #fff6ff; /* Màu khi hover */
+  border-radius: 200px;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  transition: width 1s ease, height 0.5s ease; /* Transition cho chiều rộng và cao */
+}
+
+.reserve-button:hover {
+  color: #180318 !important;
+  border: 1px solid #fff6ff !important;
+}
+
+.reserve-button:hover::before {
+  width: 200%; /* Lan rộng hơn kích thước button */
+  height: 200%;
+}
+
 .color-orange {
   color: #f9b233 !important;
 }
@@ -205,5 +240,15 @@ export default {
   100% {
     transform: translateY(0%);
   }
+}
+
+/* Tùy chỉnh hover cho nút menu */
+.menu-button {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.menu-button:hover {
+  background-color: #f9b233 !important; /* Màu tím khi hover */
+  color: white !important; /* Màu chữ trắng khi hover */
 }
 </style>
