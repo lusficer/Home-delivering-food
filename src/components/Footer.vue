@@ -1,6 +1,6 @@
 <template>
   <div class="relative">
-    <footer class="custom-color text-300 py-5 container z-0">
+    <footer class="bg-color text-300 py-5 container z-0">
       <div class="grid m-0 justify-content-center text-center content">
         <!-- Contact & Logo -->
         <div
@@ -114,7 +114,7 @@ export default {
 .p-button .p-button-icon {
   font-size: 24px !important;
 }
-.custom-color {
+.bg-color {
   background-color: rgb(255, 246, 255);
 }
 </style>

@@ -198,6 +198,54 @@
         <div class="divider vertical bottom mt-5"></div>
       </div>
     </div>
+    <div class="explore-section">
+      <div class="explore-images">
+        <div class="image-container right">
+          <div class="image-background"></div>
+          <Image
+            src="Restaurant/restaurant-luxury-interior-design-dark-lightning_114579-2492.avif"
+            alt="Save a Seat in Flavor Paradise"
+            width="200"
+            height="400"
+            imageClass="explore-img pt-7"
+          />
+          <p class="image-label w-9 pl-6">SEE WHAT'S COOKING</p>
+        </div>
+        <div class="image-container flex align-content-around flex-wrap left">
+          <div class="image-background-left">
+            <Image
+              src="Restaurant/grey-painted-fancy-restaurant-with-empty-dinner-table_140725-8729.jpg"
+              alt="See What's Cooking"
+              width="350"
+              height="250"
+              imageClass="explore-img"
+            />
+            <p class="image-label custom-color pt-7 w-20rem mt-3">
+              SAVE A SEAT IN FLAVOR PARADISE
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="explore-content">
+        <h2 class="explore-title">
+          EXPLORE THE ART OF FINE DINING WITH OUR EXCEPTIONALLY CRAFTED MENUS
+        </h2>
+        <div class="subscribe-section">
+          <p class="subscribe-heading">Stay in the Know</p>
+          <p class="subscribe-subheading">
+            Get the latest on our seasonal menus & exclusive offers!
+          </p>
+          <div class="subscribe-form flex flex-column align-items-center">
+            <InputText
+              v-model="email"
+              placeholder="Enter your email address"
+              class="email-input"
+            />
+            <Button label="Subscribe" class="subscribe-btn" />
+          </div>
+        </div>
+      </div>
+    </div>
     <Footer class="z-10 relative" />
   </div>
 </template>
@@ -207,6 +255,7 @@ import NavBar from "../components/NavBar.vue";
 import Footer from "../components/Footer.vue";
 import Button from "primevue/button";
 import Image from "primevue/image";
+import InputText from "primevue/inputtext";
 
 export default {
   components: {
@@ -214,6 +263,7 @@ export default {
     Footer,
     Button,
     Image,
+    InputText,
   },
   data() {
     return {
@@ -323,6 +373,7 @@ export default {
           author: "Jacqueline Miller",
         },
       ],
+      email: "",
       currentTestimonialIndex: 0,
     };
   },
@@ -406,7 +457,7 @@ export default {
 }
 
 .custom-color {
-  color: #5e315e;
+  color: #bf81bf !important;
   font-family: "Playfair Display", serif;
 }
 
@@ -484,7 +535,7 @@ button:hover::before {
 }
 
 .signature-section {
-  background: #1a0d1a;
+  background: #180318;
   padding: 4rem 2rem;
 }
 .title {
@@ -549,7 +600,7 @@ button:hover::before {
 
 /* Styles cho Masterminds of Flavor Section */
 .masterminds-section {
-  padding: 4rem 2rem;
+  padding-top: 4rem;
 }
 .masterminds-container {
   display: flex;
@@ -720,5 +771,131 @@ button:hover::before {
   height: 100%;
   object-fit: cover;
   border-radius: 500px 500px 0 0;
+}
+
+.explore-section {
+  background: #180318;
+  text-align: center;
+  padding-top: 4rem;
+}
+.explore-images {
+  display: flex;
+  justify-content: center;
+  gap: 8rem;
+  margin-bottom: 2rem;
+}
+.image-container {
+  position: relative;
+  height: 440px;
+  width: 300px;
+  transition: transform 0.5s ease; /* Áp dụng transition cho cả container */
+}
+.image-container.left {
+  transform: rotate(10deg);
+}
+.image-container.left:hover {
+  transform: rotate(0deg);
+}
+.image-container.right {
+  transform: rotate(-10deg);
+}
+.image-container.right:hover {
+  transform: rotate(0deg);
+}
+::v-deep(.explore-img) {
+  object-fit: cover;
+  border-radius: 1rem;
+}
+.image-container.right {
+  border: 2px solid #fff; /* Thêm border trắng cho ảnh 1 */
+  border-radius: 2rem;
+}
+.image-container.right:hover {
+  border-color: #f9b233; /* Khi hover đổi màu viền thành vàng */
+}
+.image-background {
+  position: absolute;
+  inset: 0;
+  background-color: #1a0d1a;
+  border: 1px solid #341634;
+  border-radius: 2rem;
+  z-index: 0;
+}
+
+.image-background-left {
+  padding-top: 60px;
+  height: 300px;
+  width: 350px;
+  background-color: white;
+  border-radius: 3rem;
+}
+
+.image-container.left ::v-deep(.explore-img) {
+  border-radius: 200px 200px 0 0;
+}
+.image-container.right ::v-deep(.explore-img) {
+  position: relative;
+  z-index: 1; /* Đặt ảnh phía trên nền */
+}
+.image-label {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  color: white;
+  font-size: 1.5rem;
+  font-family: "Playfair Display", serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  z-index: 2; /* Đặt chữ phía trên ảnh và nền */
+}
+.explore-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.explore-title {
+  color: white;
+  font-size: 3rem;
+  font-family: "Playfair Display", serif;
+  margin-bottom: 2rem;
+}
+.subscribe-section {
+  color: white;
+}
+.subscribe-heading {
+  font-size: 1.5rem;
+  font-family: "Cinzel", serif;
+  color: #f9b233;
+  margin-bottom: 0.5rem;
+}
+.subscribe-subheading {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+.subscribe-form {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+::v-deep(.email-input) {
+  padding: 0.5rem 1rem;
+  border: 1px solid #5e315e;
+  border-radius: 25px;
+  background: transparent;
+  color: white;
+  width: 300px;
+}
+::v-deep(.email-input::placeholder) {
+  color: #aaa;
+}
+.subscribe-btn {
+  background-color: #f9b233;
+  color: #5e315e;
+  border-radius: 25px;
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+}
+.subscribe-btn:hover {
+  background-color: #e5a120;
 }
 </style>
