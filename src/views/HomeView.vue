@@ -1,5 +1,6 @@
 <template>
   <div class="app-container relative overflow-hidden">
+    <!-- Hero Section: Video background and introductory content -->
     <video
       autoplay
       muted
@@ -22,7 +23,7 @@
     <div class="home-view relative z-1">
       <NavBar />
       <div class="content mb-5 text-white text-center">
-        <h1 class="text-8xl custom-p font-bold mb-4">
+        <h1 class="custom-p font-bold mb-4" style="font-size: 7.5rem">
           Where every meal feels like home
         </h1>
         <p class="text-xl custom-p">
@@ -38,6 +39,8 @@
         />
       </div>
     </div>
+
+    <!-- Menu Link Section: Displays menu categories with images -->
     <div
       class="Menu-link z-10 custom-bg w-screen relative"
       style="height: 70rem"
@@ -77,7 +80,7 @@
           height="660"
           imageClass="border_round"
           style="padding: 0 3rem 0 3rem"
-        ></Image>
+        />
         <div class="w-8" style="padding: 0 8rem 0 8rem">
           <p class="custom-color mb-8 text-xl">
             Welcome to NvBlast, where we bring the heart of our kitchen to your
@@ -103,6 +106,8 @@
         </div>
       </div>
     </div>
+
+    <!-- Signature Section: Displays signature dishes -->
     <div class="signature-section">
       <h2 class="title">OUR SIGNATURE DELIGHTS</h2>
       <div class="grid">
@@ -111,7 +116,6 @@
           :key="index"
           class="item relative overflow-hidden"
         >
-          <!-- Sử dụng component Image của PrimeVue -->
           <Image
             :src="item.image"
             :alt="item.name"
@@ -119,8 +123,6 @@
             height="320"
             imageClass="signature-img"
           />
-
-          <!-- Nội dung món ăn -->
           <div
             class="content relative z-10 transition-opacity duration-500 text-center px-4 py-6"
           >
@@ -134,8 +136,10 @@
         </div>
       </div>
     </div>
-    <!-- Thêm section Masterminds of Flavor -->
+
+    <!-- Masterminds Section: Introduces the chef and testimonials -->
     <div class="masterminds-section custom-bg">
+      <!-- Chef Information -->
       <div class="masterminds-container">
         <div class="masterminds-content">
           <h2 class="masterminds-title">DISCOVER THE MASTERMINDS OF FLAVOR</h2>
@@ -172,6 +176,7 @@
         </div>
       </div>
 
+      <!-- Testimonial Section -->
       <div class="testimonial-section">
         <div class="divider horizontal right mb-5"></div>
         <div class="divider vertical top mb-5"></div>
@@ -198,6 +203,58 @@
         <div class="divider vertical bottom mt-5"></div>
       </div>
     </div>
+
+    <!-- Explore Section: Promotes dining experience with images and subscription form -->
+    <div class="explore-section">
+      <div class="explore-images">
+        <div class="image-container right">
+          <div class="image-background"></div>
+          <Image
+            src="Restaurant/restaurant-luxury-interior-design-dark-lightning_114579-2492.avif"
+            alt="Save a Seat in Flavor Paradise"
+            width="200"
+            height="400"
+            imageClass="explore-img pt-7"
+          />
+          <p class="image-label w-9 pl-6">SEE WHAT'S COOKING</p>
+        </div>
+        <div class="image-container flex align-content-around flex-wrap left">
+          <div class="image-background-left">
+            <Image
+              src="Restaurant/grey-painted-fancy-restaurant-with-empty-dinner-table_140725-8729.jpg"
+              alt="See What's Cooking"
+              width="350"
+              height="250"
+              imageClass="explore-img"
+            />
+            <p class="image-label custom-color pt-7 w-20rem mt-3">
+              SAVE A SEAT IN FLAVOR PARADISE
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="explore-content">
+        <h2 class="explore-title">
+          EXPLORE THE ART OF FINE DINING WITH OUR EXCEPTIONALLY CRAFTED MENUS
+        </h2>
+        <div class="subscribe-section">
+          <p class="subscribe-heading">Stay in the Know</p>
+          <p class="subscribe-subheading">
+            Get the latest on our seasonal menus & exclusive offers!
+          </p>
+          <div class="subscribe-form flex flex-column align-items-center">
+            <InputText
+              v-model="email"
+              placeholder="Enter your email address"
+              class="email-input"
+            />
+            <Button label="Subscribe" class="subscribe-btn" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Section -->
     <Footer class="z-10 relative" />
   </div>
 </template>
@@ -207,6 +264,7 @@ import NavBar from "../components/NavBar.vue";
 import Footer from "../components/Footer.vue";
 import Button from "primevue/button";
 import Image from "primevue/image";
+import InputText from "primevue/inputtext";
 
 export default {
   components: {
@@ -214,9 +272,11 @@ export default {
     Footer,
     Button,
     Image,
+    InputText,
   },
   data() {
     return {
+      // Menu items for the Menu Link section
       menuItems: [
         {
           label: "Breakfast",
@@ -249,6 +309,7 @@ export default {
           link: "/menu/beverage",
         },
       ],
+      // Signature dishes for the Signature Section
       menu: [
         {
           type: "Breakfast",
@@ -300,6 +361,7 @@ export default {
           link: "/menu/brunch",
         },
       ],
+      // Testimonials for the Testimonial Section
       testimonials: [
         {
           title: "THROUGH A BOWL OF GOODNESS",
@@ -323,25 +385,29 @@ export default {
           author: "Jacqueline Miller",
         },
       ],
-      currentTestimonialIndex: 0,
+      email: "", // For email subscription form
+      currentTestimonialIndex: 0, // Tracks current testimonial
     };
   },
   computed: {
+    // Returns the current testimonial based on the index
     currentTestimonial() {
       return this.testimonials[this.currentTestimonialIndex];
     },
   },
   methods: {
+    // Navigate to the previous testimonial
     prevTestimonial() {
       this.currentTestimonialIndex =
         (this.currentTestimonialIndex - 1 + this.testimonials.length) %
         this.testimonials.length;
     },
+    // Navigate to the next testimonial
     nextTestimonial() {
       this.currentTestimonialIndex =
         (this.currentTestimonialIndex + 1) % this.testimonials.length;
     },
-    // Thêm hàm để chọn nhận xét ngẫu nhiên khi tải trang
+    // Randomize testimonial on page load
     randomizeTestimonial() {
       this.currentTestimonialIndex = Math.floor(
         Math.random() * this.testimonials.length
@@ -355,32 +421,34 @@ export default {
 </script>
 
 <style scoped>
+/* General Styles */
 .app-container {
   font-family: "Playfair Display", serif;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
+.custom-bg {
+  background-color: #fff6ff;
+}
+.custom-color {
+  color: #bf81bf !important;
+  font-family: "Playfair Display", serif;
+}
 
+/* Hero Section Styles */
 .home-view {
   flex: 0 0 auto;
   height: 800px;
-}
-.custom-p {
-  padding: 2rem 26rem 0 26rem;
-  font-family: "Playfair Display", serif;
 }
 .b-blur {
   background-color: #180318;
   opacity: 0.8;
 }
-.Menu-link {
-  margin-top: 15rem;
+.custom-p {
+  padding: 1rem 26rem 0 26rem;
+  font-family: "Playfair Display", serif;
 }
-.navbar-menu {
-  top: -15rem;
-}
-/* From Uiverse.io by vikiWayne */
 .button {
   padding: 1em 1em;
   border: none;
@@ -396,20 +464,6 @@ export default {
   overflow: hidden;
   outline: 2px solid #f9b233;
 }
-
-::v-deep(.rounded-top-img) {
-  border-radius: 200px 200px 0 0 !important;
-}
-
-.custom-bg {
-  background-color: #fff6ff;
-}
-
-.custom-color {
-  color: #5e315e;
-  font-family: "Playfair Display", serif;
-}
-
 button:hover {
   color: #f9b233 !important;
   background: none !important;
@@ -418,7 +472,6 @@ button:hover {
   outline: 5px solid #5e315e;
   box-shadow: 4px 5px 17px -4px #5e315e;
 }
-
 button::before {
   content: "";
   position: absolute;
@@ -431,11 +484,17 @@ button::before {
   z-index: -1;
   transition: width 1000ms;
 }
-
 button:hover::before {
   width: 250%;
 }
 
+/* Menu Link Section Styles */
+.Menu-link {
+  margin-top: 15rem;
+}
+.navbar-menu {
+  top: -15rem;
+}
 .image-card {
   position: relative;
   width: 250px;
@@ -443,7 +502,6 @@ button:hover::before {
   overflow: hidden;
   border-radius: 200px 200px 0 0;
 }
-
 .card-img {
   width: 100%;
   height: 100%;
@@ -451,7 +509,6 @@ button:hover::before {
   border-radius: inherit;
   display: block;
 }
-
 .overlay {
   position: absolute;
   top: 0;
@@ -466,7 +523,6 @@ button:hover::before {
   transition: opacity 0.3s ease;
   border-radius: inherit;
 }
-
 .overlay-text {
   font-size: 24px;
   font-weight: bold;
@@ -474,17 +530,19 @@ button:hover::before {
   opacity: 0;
   transition: opacity 0.3s ease;
 }
-
 .image-card:hover .overlay {
   opacity: 1;
 }
-
 .image-card:hover .overlay-text {
   opacity: 1;
 }
+::v-deep(.border_round) {
+  border-radius: 500px 0 500px 500px;
+}
 
+/* Signature Section Styles */
 .signature-section {
-  background: #1a0d1a;
+  background: #180318;
   padding: 4rem 2rem;
 }
 .title {
@@ -547,9 +605,9 @@ button:hover::before {
   margin-bottom: 0.5rem;
 }
 
-/* Styles cho Masterminds of Flavor Section */
+/* Masterminds Section Styles */
 .masterminds-section {
-  padding: 4rem 2rem;
+  padding-top: 4rem;
 }
 .masterminds-container {
   display: flex;
@@ -602,18 +660,12 @@ button:hover::before {
   color: #5e315e;
   font-size: 1rem;
 }
-
 .social-icon {
   color: #5e315e;
   font-size: 1.5rem;
 }
 .social-icon:hover {
-  background-color: rgba(
-    255,
-    255,
-    255,
-    0.75
-  ) !important; /* Giữ nguyên màu khi hover */
+  background-color: rgba(255, 255, 255, 0.75) !important;
 }
 .chef-description {
   color: #666;
@@ -636,7 +688,14 @@ button:hover::before {
   flex: 1;
   max-width: 500px;
 }
+::v-deep(.chef-img) {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 500px 500px 0 0;
+}
 
+/* Testimonial Section Styles */
 .testimonial-section {
   text-align: center;
   padding: 4rem 2rem;
@@ -646,7 +705,6 @@ button:hover::before {
   color: #b169b1;
   font-size: 1.2rem;
   margin-bottom: 0.5rem;
-  font-style: italic;
 }
 .testimonial-title {
   font-size: 2.5rem;
@@ -682,7 +740,7 @@ button:hover::before {
   font-size: 2rem;
 }
 .nav-btn:hover {
-  color: #5e315e; /* Giữ nguyên màu khi hover */
+  color: #5e315e;
 }
 .divider {
   background-color: #5e315e;
@@ -712,13 +770,129 @@ button:hover::before {
   position: relative;
   margin-bottom: 2rem;
 }
-::v-deep(.border_round) {
-  border-radius: 500px 0 500px 500px;
+
+/* Explore Section Styles */
+.explore-section {
+  background: #180318;
+  text-align: center;
+  padding-top: 4rem;
 }
-::v-deep(.chef-img) {
-  width: 100%;
-  height: 100%;
+.explore-images {
+  display: flex;
+  justify-content: center;
+  gap: 8rem;
+  margin-bottom: 2rem;
+}
+.image-container {
+  position: relative;
+  height: 440px;
+  width: 300px;
+  transition: transform 0.5s ease;
+}
+.image-container.left {
+  transform: rotate(10deg);
+}
+.image-container.left:hover {
+  transform: rotate(0deg);
+}
+.image-container.right {
+  transform: rotate(-10deg);
+}
+.image-container.right:hover {
+  transform: rotate(0deg);
+}
+::v-deep(.explore-img) {
   object-fit: cover;
-  border-radius: 500px 500px 0 0;
+  border-radius: 1rem;
+}
+.image-container.right {
+  border: 2px solid #fff;
+  border-radius: 2rem;
+}
+.image-container.right:hover {
+  border-color: #f9b233;
+}
+.image-background {
+  position: absolute;
+  inset: 0;
+  background-color: #1a0d1a;
+  border: 1px solid #341634;
+  border-radius: 2rem;
+  z-index: 0;
+}
+.image-background-left {
+  padding-top: 60px;
+  height: 300px;
+  width: 350px;
+  background-color: white;
+  border-radius: 3rem;
+}
+.image-container.left ::v-deep(.explore-img) {
+  border-radius: 200px 200px 0 0;
+}
+.image-container.right ::v-deep(.explore-img) {
+  position: relative;
+  z-index: 1;
+}
+.image-label {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  color: white;
+  font-size: 1.5rem;
+  font-family: "Playfair Display", serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  z-index: 2;
+}
+.explore-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.explore-title {
+  color: white;
+  font-size: 3rem;
+  font-family: "Playfair Display", serif;
+  margin-bottom: 2rem;
+}
+.subscribe-section {
+  color: white;
+}
+.subscribe-heading {
+  font-size: 1.5rem;
+  font-family: "Cinzel", serif;
+  color: #f9b233;
+  margin-bottom: 0.5rem;
+}
+.subscribe-subheading {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+.subscribe-form {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+::v-deep(.email-input) {
+  padding: 0.5rem 1rem;
+  border: 1px solid #5e315e;
+  border-radius: 25px;
+  background: transparent;
+  color: white;
+  width: 300px;
+}
+::v-deep(.email-input::placeholder) {
+  color: #aaa;
+}
+.subscribe-btn {
+  background-color: #f9b233;
+  color: #5e315e;
+  border-radius: 25px;
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+}
+.subscribe-btn:hover {
+  background-color: #e5a120;
 }
 </style>
