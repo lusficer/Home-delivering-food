@@ -1,60 +1,62 @@
 <template>
-  <div class="hero-section">
+    <div class="hero-section">
     <div class="overlay">
-      <div class="content">
-        <h3 class="welcome-text">Welcome to NVBlast</h3>
-        <p class="description">
-          Our streamlined reservation process ensures you have the perfect spot waiting for you, 
-          allowing you to focus on relishing every moment of our exceptional culinary offerings. 
-          Reserve now and let the anticipation of an exquisite dining adventure begin!
-        </p>
-        <h1 class="main-title">YOUR GATEWAY TO CULINARY EXCELLENCE</h1>
+      <div class="content-wrapper">
+        <div class="hero-content">
+          <h3 class="welcome-text">Welcome to NVBlast</h3>
+          <p class="description">
+            Our streamlined reservation process ensures you have the perfect spot waiting for you, 
+            allowing you to focus on relishing every moment of our exceptional culinary offerings. 
+            Reserve now and let the anticipation of an exquisite dining adventure begin!
+          </p>
+          <h1 class="main-title">YOUR GATEWAY TO CULINARY EXCELLENCE</h1>
+        </div>
+
+        <form class="reservation-form" @submit.prevent="submitForm">
+          <div class="form-row">
+            <div class="input-group">
+              <label>Name</label>
+              <input type="text" v-model="name" placeholder="Your Name" required />
+            </div>
+            <div class="input-group">
+              <label>Phone No</label>
+              <input type="tel" v-model="phone" placeholder="e.g. 123-456-7890" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="input-group full-width">
+              <label>Email Id</label>
+              <input type="email" v-model="email" placeholder="you@example.com" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="input-group">
+              <label>Date</label>
+              <input type="date" v-model="date" required />
+            </div>
+            <div class="input-group">
+              <label>Time</label>
+              <input type="time" v-model="time" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="input-group full-width">
+              <label>Number Of People</label>
+              <input type="number" v-model="people" placeholder="e.g. 2" min="1" required />
+            </div>
+          </div>
+
+          <button type="submit" class="submit-btn">Reserve Now</button>
+        </form>
       </div>
     </div>
   </div>
 
   <!-- Booking Form Section -->
-  <div class="booking-section">
-    <form class="booking-form" @submit.prevent="submitForm">
-      <div class="form-group">
-        <div class="input-box">
-          <label>Name</label>
-          <input type="text" v-model="name" required />
-        </div>
-        <div class="input-box">
-          <label>Phone No</label>
-          <input type="text" v-model="phone" required />
-        </div>
-      </div>
-
-      <div class="form-group">
-        <div class="input-box">
-          <label>Email Id</label>
-          <input type="email" v-model="email" required />
-        </div>
-      </div>
-
-      <div class="form-group">
-        <div class="input-box">
-          <label>Date</label>
-          <input type="date" v-model="date" required />
-        </div>
-        <div class="input-box">
-          <label>Time</label>
-          <input type="time" v-model="time" required />
-        </div>
-      </div>
-
-      <div class="form-group">
-        <div class="input-box">
-          <label>Number Of People</label>
-          <input type="number" v-model="people" required />
-        </div>
-      </div>
-
-      <button type="submit" class="submit-btn">Book a table</button>
-    </form>
-  </div>
+  
 
   <div class="contact-opening-section">
     <!-- Contact Info -->
@@ -135,90 +137,105 @@ const submitForm = () => {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  font-family: 'Roboto', sans-serif;
 }
 
-/* Lớp phủ tối giúp chữ dễ đọc hơn */
 .overlay {
-  background: #00000099; /* Lớp phủ mờ */
+  background-color: rgba(0, 0, 0, 0.7);
   width: 100%;
   height: 100%;
+  padding: 40px 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
 }
 
-/* Khối chứa nội dung */
-.content {
-  max-width: 1000px;
-  padding: 25px;
+.content-wrapper {
+  max-width: 1200px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+}
+
+.hero-content {
+  text-align: left;
   color: white;
 }
 
-/* Tiêu đề nhỏ */
 .welcome-text {
-  font-size: 20px;
-  color: gold;
   font-style: italic;
+  color: gold;
+  font-size: 18px;
   margin-bottom: 10px;
 }
 
-/* Đoạn mô tả */
 .description {
   font-size: 16px;
+  margin: 0 0 20px;
+  color: #eee;
+  max-width: 90%;
+}
+
+.main-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 42px;
+  color: white;
+  font-weight: 700;
+}
+
+.reservation-form {
+  /* background: #150016; */ /* ❌ bỏ nền màu */
+  background-color: rgba(21, 0, 22, 0.6); /* ✅ thêm nền mờ */
+  padding: 40px;
+  border-radius: 30px;
+  border: 2px solid gold;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.1);
+  width: 100%;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
   margin-bottom: 20px;
 }
 
-/* Tiêu đề chính */
-.main-title {
-  font-size: 50px;
-  font-weight: bold;
-}
-
-/* ======= Booking Form Section ======= */
-.booking-section {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  padding: 20px 20px;
-  background: #1a061e;
-}
-
-.booking-form {
-  background: #150016;
-  padding: 30px;
-  border-radius: 20px;
-  width: 600px;
-  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
-  border: 1px solid gold;
-}
-
-.form-group {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 15px;
-}
-
-.input-box {
-  width: 48%;
+.input-group {
+  flex: 1;
   display: flex;
   flex-direction: column;
 }
 
-.input-box label {
-  font-size: 14px;
-  color: white;
-  margin-bottom: 5px;
+.input-group.full-width {
+  flex: 100%;
 }
 
-.input-box input {
-  padding: 10px;
-  border: 1px solid hwb(300 0% 50%);
-  border-radius: 20px;
+.input-group label {
+  font-size: 14px;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.input-group input {
+  padding: 12px 16px;
+  border-radius: 25px;
+  border: 1px solid #ccc;
   background: transparent;
   color: white;
+  font-size: 15px;
   outline: none;
-  width: 100%;
+  transition: border 0.3s;
+}
+
+.input-group input::placeholder {
+  color: #aaa;
+}
+
+.input-group input:focus {
+  border-color: gold;
 }
 
 .submit-btn {
@@ -228,7 +245,25 @@ const submitForm = () => {
   border: none;
   border-radius: 30px;
   font-size: 16px;
+  font-weight: bold;
   cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.submit-btn:hover {
+  background: #ffcc00;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 15px;
+  background: gold;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
 .submit-btn:hover {
