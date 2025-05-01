@@ -113,6 +113,7 @@ export default {
   padding: 10px 20px;
   display: flex;
   align-items: center;
+  z-index: 10;
 }
 
 .right-section {

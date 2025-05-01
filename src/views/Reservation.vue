@@ -1,66 +1,91 @@
 <template>
-    <div class="hero-section">
-    <div class="overlay">
-      <div class="content-wrapper">
-        <div class="hero-content">
-          <h3 class="welcome-text">Welcome to NVBlast</h3>
-          <p class="description">
-            Our streamlined reservation process ensures you have the perfect spot waiting for you, 
-            allowing you to focus on relishing every moment of our exceptional culinary offerings. 
-            Reserve now and let the anticipation of an exquisite dining adventure begin!
-          </p>
-          <h1 class="main-title">YOUR GATEWAY TO CULINARY EXCELLENCE</h1>
+  <NavBar></NavBar>
+  <div class="hero-section">
+    <Image src="../../public/reservation.jpg" class="hero-bg"> </Image>
+    <div class="overlay"></div>
+    <div class="content-wrapper flex justify-content-center flex-wrap">
+      <div class="hero-content">
+        <h3 class="welcome-text flex justify-content-center flex-wrap">
+          Welcome to NVBlast
+        </h3>
+        <p class="description">
+          Our streamlined reservation process ensures you have the perfect spot
+          waiting for you, allowing you to focus on relishing every moment of
+          our exceptional culinary offerings. Reserve now and let the
+          anticipation of an exquisite dining adventure begin!
+        </p>
+        <h1 class="main-title flex justify-content-center flex-wrap">
+          YOUR GATEWAY TO CULINARY EXCELLENCE
+        </h1>
+      </div>
+
+      <form class="reservation-form" @submit.prevent="submitForm">
+        <div class="form-row">
+          <div class="input-group">
+            <label>Name</label>
+            <input
+              type="text"
+              v-model="name"
+              placeholder="Your Name"
+              required
+            />
+          </div>
+          <div class="input-group">
+            <label>Phone No</label>
+            <input
+              type="tel"
+              v-model="phone"
+              placeholder="e.g. 123-456-7890"
+              required
+            />
+          </div>
         </div>
 
-        <form class="reservation-form" @submit.prevent="submitForm">
-          <div class="form-row">
-            <div class="input-group">
-              <label>Name</label>
-              <input type="text" v-model="name" placeholder="Your Name" required />
-            </div>
-            <div class="input-group">
-              <label>Phone No</label>
-              <input type="tel" v-model="phone" placeholder="e.g. 123-456-7890" required />
-            </div>
+        <div class="form-row">
+          <div class="input-group full-width">
+            <label>Email Id</label>
+            <input
+              type="email"
+              v-model="email"
+              placeholder="you@example.com"
+              required
+            />
           </div>
+        </div>
 
-          <div class="form-row">
-            <div class="input-group full-width">
-              <label>Email Id</label>
-              <input type="email" v-model="email" placeholder="you@example.com" required />
-            </div>
+        <div class="form-row">
+          <div class="input-group">
+            <label>Date</label>
+            <input type="date" v-model="date" required />
           </div>
-
-          <div class="form-row">
-            <div class="input-group">
-              <label>Date</label>
-              <input type="date" v-model="date" required />
-            </div>
-            <div class="input-group">
-              <label>Time</label>
-              <input type="time" v-model="time" required />
-            </div>
+          <div class="input-group">
+            <label>Time</label>
+            <input type="time" v-model="time" required />
           </div>
+        </div>
 
-          <div class="form-row">
-            <div class="input-group full-width">
-              <label>Number Of People</label>
-              <input type="number" v-model="people" placeholder="e.g. 2" min="1" required />
-            </div>
+        <div class="form-row">
+          <div class="input-group full-width">
+            <label>Number Of People</label>
+            <input
+              type="number"
+              v-model="people"
+              placeholder="e.g. 2"
+              min="1"
+              required
+            />
           </div>
+        </div>
 
-          <button type="submit" class="submit-btn">Reserve Now</button>
-        </form>
-      </div>
+        <button type="submit" class="submit-btn">Reserve Now</button>
+      </form>
     </div>
   </div>
 
   <!-- Booking Form Section -->
-  
-
   <div class="contact-opening-section">
     <!-- Contact Info -->
-    <div class="contact-info">
+    <div class="contact-info" ref="contactInfoRef">
       <h2>CONNECT WITH NVBLAST</h2>
       <div class="contact-item">
         <span class="icon">📞</span>
@@ -82,13 +107,17 @@
     </div>
 
     <!-- Image Section -->
-     
-    <div class="image-container">
-      <img src="../../public/Beverage/cup-tea-with-dried-rose-frame-black-table_114579-78957.jpg" alt="Dining Setup" class="contact-image" />
+
+    <div class="image-container" ref="contactImageRef">
+      <img
+        src="../../public/Beverage/cup-tea-with-dried-rose-frame-black-table_114579-78957.jpg"
+        alt="Dining Setup"
+        class="contact-image"
+      />
     </div>
 
     <!-- Opening Hours -->
-    <div class="opening-hours">
+    <div class="opening-hours" ref="contactHoursRef">
       <h2>OPENING HOUR</h2>
       <p>Mon - Sat: 11:00 am - 10 pm</p>
       <p>Sun: 10:00 am - 12 pm</p>
@@ -96,66 +125,113 @@
   </div>
 
   <!-- Follow on Instagram-->
-   <!-- chèn hình ảnh sau nha-->
-  <div class="instagram-section">
-    <h2 class="section-title">FOLLOW US ON INSTAGRAM</h2>
-    <div class="image-container">
-      <img src="../../public/Beverage/delicious-coffee-cups-arrangement_23-2149600728.avif" alt="Instagram Highlight" class="main-image" />
+  <div class="Follow-section mt-8">
+    <div class="Follow-image relative">
+      <div class="image-background">
+        <img
+          src="../../public/Beverage/delicious-coffee-cups-arrangement_23-2149600728.avif"
+          alt="Instagram Highlight"
+          width="650"
+          height="670"
+          class="Follow-image relative"
+        />
+        <p class="image-label text-8xl w-screen mt-4 absolute">
+          FOLLOW US ON INSTAGRAM
+        </p>
+      </div>
     </div>
+    <!-- <div class="image-container flex align-content-around flex-wrap left"></div> -->
     <div class="small-images">
       <img src="../../public/brunch(1).jpg" alt="Dish 1" class="circle-image" />
-      <img src="../../public/Brunch/Burrito(3).jpg" alt="Dish 2" class="circle-image" />
+      <img
+        src="../../public/Brunch/Burrito(3).jpg"
+        alt="Dish 2"
+        class="circle-image"
+      />
     </div>
     <p class="description">
-      THE BEST SERVICE AND FOOD TYPICAL OF <span class="highlight">NVBLAST</span>, AS WELL AS A
-      NUMBER OF UNIQUE AND VALUABLE WORKS OF FOOD, AWAIT YOUR VISIT.
+      THE BEST SERVICE AND FOOD TYPICAL OF
+      <span class="highlight">NVBLAST</span>, AS WELL AS A NUMBER OF UNIQUE AND
+      VALUABLE WORKS OF FOOD, AWAIT YOUR VISIT.
     </p>
   </div>
+
+  <Footer></Footer>
 </template>
 
 <script setup>
-import { ref } from "vue";
-
+import { onMounted, ref } from "vue";
+import NavBar from "@/components/NavBar.vue";
+import Footer from "@/components/Footer.vue";
+import { Image } from "primevue";
 const name = ref("");
 const phone = ref("");
 const email = ref("");
 const date = ref("");
 const time = ref("");
 const people = ref("");
-
+const contactInfoRef = ref(null);
+const contactImageRef = ref(null);
+const contactHoursRef = ref(null);
 const submitForm = () => {
   alert(`Table booked for ${name.value} on ${date.value} at ${time.value}`);
 };
+
+onMounted(() => {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
+
+  [contactInfoRef.value, contactImageRef.value, contactHoursRef.value].forEach(
+    (el) => {
+      if (el) observer.observe(el);
+    }
+  );
+});
 </script>
 
 <style scoped>
 /* ======= Hero Section ======= */
 .hero-section {
+  position: relative;
   width: 100vw;
-  height: 100vh;
-  background: url("../../public/Beverage.jpg") center/cover no-repeat;
+  height: 75rem;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
+}
+.hero-bg {
+  position: absolute;
+  top: 115px;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: 0;
 }
 
 .overlay {
-  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
   width: 100%;
   height: 100%;
-  padding: 40px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background-color: #180318;
+  opacity: 0.7;
+  z-index: 1;
 }
 
 .content-wrapper {
-  max-width: 1200px;
+  position: relative;
+  z-index: 2; /* nội dung nằm trên overlay */
   width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
   gap: 50px;
   align-items: center;
 }
@@ -167,6 +243,7 @@ const submitForm = () => {
 
 .welcome-text {
   font-style: italic;
+  width: 100vw;
   color: gold;
   font-size: 18px;
   margin-bottom: 10px;
@@ -180,7 +257,7 @@ const submitForm = () => {
 }
 
 .main-title {
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
   font-size: 42px;
   color: white;
   font-weight: 700;
@@ -193,7 +270,7 @@ const submitForm = () => {
   border-radius: 30px;
   border: 2px solid gold;
   box-shadow: 0 0 25px rgba(255, 255, 255, 0.1);
-  width: 100%;
+  width: 60%;
 }
 
 .form-row {
@@ -277,7 +354,8 @@ const submitForm = () => {
   padding: 50px;
 }
 
-.contact-info, .opening-hours {
+.contact-info,
+.opening-hours {
   flex: 1;
   text-align: center;
   font-size: 18px;
@@ -295,7 +373,8 @@ const submitForm = () => {
   margin-right: 10px;
 }
 
-.contact-item a, .contact-item p {
+.contact-item a,
+.contact-item p {
   color: #5a2d50;
   text-decoration: none;
 }
@@ -313,8 +392,43 @@ const submitForm = () => {
 }
 
 .contact-image {
-  width: 80%;
-  border-radius: 20px;
+  width: 75%;
+  border-radius: 200px 200px 0 0;
+  border: 2px solid #180318;
+}
+
+.Follow-section {
+  z-index: 1;
+  flex: 1;
+  text-align: center;
+  font-size: 18px;
+  color: #5a2d50;
+}
+
+.Follow-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.image-background {
+  background-color: #fff;
+  padding-top: 8rem;
+  height: 670px;
+  border-radius: 100px;
+}
+
+.image-label {
+  z-index: 0;
+  top: 0;
+  left: 0;
+  color: #fbc029;
+  font-family: "Playfair Display", serif;
+}
+
+.Follow-image {
+  z-index: 1;
+  border-radius: 500px 500px 100px 100px;
 }
 
 .instagram-section {
@@ -352,7 +466,6 @@ const submitForm = () => {
   height: 250px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid gold;
 }
 
 .description {
@@ -366,5 +479,18 @@ const submitForm = () => {
 .highlight {
   color: purple;
   font-weight: bold;
+}
+
+.contact-info,
+.image-container,
+.opening-hours {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: all 0.6s ease-out;
+}
+
+.show {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
 }
 </style>
