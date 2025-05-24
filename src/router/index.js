@@ -33,7 +33,7 @@ const router = createRouter({
       path: "/chef",
       name: "Chef",
       component: () => import("../views/Chef.vue"),
-    }
+    },
   ],
 });
 
