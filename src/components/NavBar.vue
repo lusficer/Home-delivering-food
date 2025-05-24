@@ -1,25 +1,15 @@
 <template>
   <div class="navbar absolute w-full">
-    <Toolbar
-      class="w-full border-none border-bottom-3 border-yellow-400 bg-transparent"
-    >
+    <Toolbar class="w-full border-none border-bottom-3 border-yellow-400 bg-transparent">
       <template #start>
-        <Button
-          icon="pi pi-bars"
-          size="large"
+        <Button icon="pi pi-bars" size="large"
           class="menu-button p-button-text color-orange border-none border-right-3 border-yellow-500 mr-8"
-          @click="openPosition('top')"
-        />
-        <Dialog
-          v-model:visible="visible"
-          modal
-          :position="position"
-          :style="{
-            width: '100vw',
-            height: '100vh',
-            backgroundColor: '#180318',
-          }"
-        >
+          @click="openPosition('top')" />
+        <Dialog v-model:visible="visible" modal :position="position" :style="{
+          width: '100vw',
+          height: '100vh',
+          backgroundColor: '#180318',
+        }">
           <div class="w-full flex justify-content-center">
             <div class="text-8xl playFair_font">Menu</div>
           </div>
@@ -29,10 +19,8 @@
                 <img src="../../public/Beverage.jpg" alt="Food 1" />
                 <img src="../../public/Beverage(1).jpg" alt="Food 2" />
                 <img src="../../public/Beverage(2).jpg" alt="Food 3" />
-                <img
-                  src="../../public/Beverage/close-up-fresh-coffee-with-sugar-ready-be-served_23-2148463988.jpg"
-                  alt="Food 4"
-                />
+                <img src="../../public/Beverage/close-up-fresh-coffee-with-sugar-ready-be-served_23-2148463988.jpg"
+                  alt="Food 4" />
               </div>
             </div>
 
@@ -50,26 +38,17 @@
         </Dialog>
       </template>
       <template #center>
-        <Image
-          src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b37dca20c9b0c68f52979d_nvblast.svg"
-          class="ml-8 pl-7"
-        >
+        <Image src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b37dca20c9b0c68f52979d_nvblast.svg"
+          class="ml-8 pl-7">
         </Image>
       </template>
       <template #end>
         <div class="right-section">
           <div>
-            <i
-              class="pi pi-search search-icon color-orange mr-4"
-              style="font-size: 1.25rem"
-            ></i>
+            <i class="pi pi-search search-icon color-orange mr-4" style="font-size: 1.25rem"></i>
             <span class="cart color-orange text-xl">Cart (0)</span>
           </div>
-          <Button
-            size="large"
-            label="Reserve my table"
-            class="reserve-button p-3"
-          />
+          <Button size="large" label="Reserve my table" class="reserve-button p-3" />
         </div>
       </template>
     </Toolbar>
@@ -152,7 +131,8 @@ export default {
   font-weight: bold;
   overflow: hidden;
   z-index: 1;
-  transition: color 0.5s ease; /* Chỉ transition màu chữ */
+  transition: color 0.5s ease;
+  /* Chỉ transition màu chữ */
 }
 
 .reserve-button::before {
@@ -162,11 +142,13 @@ export default {
   left: 50%;
   width: 0;
   height: 0;
-  background-color: #fff6ff; /* Màu khi hover */
+  background-color: #fff6ff;
+  /* Màu khi hover */
   border-radius: 200px;
   transform: translate(-50%, -50%);
   z-index: -1;
-  transition: width 1s ease, height 0.5s ease; /* Transition cho chiều rộng và cao */
+  transition: width 1s ease, height 0.5s ease;
+  /* Transition cho chiều rộng và cao */
 }
 
 .reserve-button:hover {
@@ -175,7 +157,8 @@ export default {
 }
 
 .reserve-button:hover::before {
-  width: 200%; /* Lan rộng hơn kích thước button */
+  width: 200%;
+  /* Lan rộng hơn kích thước button */
   height: 200%;
 }
 
@@ -196,7 +179,8 @@ export default {
 }
 
 .image-scroller {
-  width: 200px; /* Điều chỉnh kích thước cột */
+  width: 200px;
+  /* Điều chỉnh kích thước cột */
   height: 100%;
   overflow: hidden;
   position: relative;
@@ -230,14 +214,17 @@ export default {
   0% {
     transform: translateY(0%);
   }
+
   100% {
     transform: translateY(-50%);
   }
 }
+
 @keyframes bounceScrollUp {
   0% {
     transform: translateY(-50%);
   }
+
   100% {
     transform: translateY(0%);
   }
@@ -249,7 +236,9 @@ export default {
 }
 
 .menu-button:hover {
-  background-color: #f9b233 !important; /* Màu tím khi hover */
-  color: white !important; /* Màu chữ trắng khi hover */
+  background-color: #f9b233 !important;
+  /* Màu tím khi hover */
+  color: white !important;
+  /* Màu chữ trắng khi hover */
 }
 </style>

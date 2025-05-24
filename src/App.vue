@@ -2,10 +2,6 @@
   <div class="w-screen">
     <RouterView />
   </div>
-  <!-- <div>
-    <HeroSection />
-    <ReservationForm />
-  </div> -->
 
 </template>
 <script>
