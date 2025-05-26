@@ -34,6 +34,11 @@ const router = createRouter({
       name: "Chef",
       component: () => import("../views/Chef.vue"),
     },
+    {
+      path: "/about",
+      name: "About",
+      component: () => import("../views/About.vue"),
+    },
   ],
 });
 

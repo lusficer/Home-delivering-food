@@ -1,15 +1,25 @@
 <template>
   <div class="navbar absolute w-full">
-    <Toolbar class="w-full border-none border-bottom-3 border-yellow-400 bg-transparent">
+    <Toolbar
+      class="w-full border-none border-bottom-3 border-yellow-400 bg-transparent"
+    >
       <template #start>
-        <Button icon="pi pi-bars" size="large"
+        <Button
+          icon="pi pi-bars"
+          size="large"
           class="menu-button p-button-text color-orange border-none border-right-3 border-yellow-500 mr-8"
-          @click="openPosition('top')" />
-        <Dialog v-model:visible="visible" modal :position="position" :style="{
-          width: '100vw',
-          height: '100vh',
-          backgroundColor: '#180318',
-        }">
+          @click="openPosition('top')"
+        />
+        <Dialog
+          v-model:visible="visible"
+          modal
+          :position="position"
+          :style="{
+            width: '100vw',
+            height: '100vh',
+            backgroundColor: '#180318',
+          }"
+        >
           <div class="w-full flex justify-content-center">
             <div class="text-8xl playFair_font">Menu</div>
           </div>
@@ -19,12 +29,34 @@
                 <img src="../../public/Beverage.jpg" alt="Food 1" />
                 <img src="../../public/Beverage(1).jpg" alt="Food 2" />
                 <img src="../../public/Beverage(2).jpg" alt="Food 3" />
-                <img src="../../public/Beverage/close-up-fresh-coffee-with-sugar-ready-be-served_23-2148463988.jpg"
-                  alt="Food 4" />
+                <img
+                  src="../../public/Beverage/close-up-fresh-coffee-with-sugar-ready-be-served_23-2148463988.jpg"
+                  alt="Food 4"
+                />
               </div>
             </div>
 
-            <div class="menu-title"></div>
+            <div class="menu-grid">
+              <button class="menu-item" @click="navigateTo('/')">Home</button>
+              <button class="menu-item" @click="navigateTo('/about')">
+                About
+              </button>
+              <button class="menu-item" @click="navigateTo('/menu')">
+                Menu
+              </button>
+              <button class="menu-item" @click="navigateTo('/reservation')">
+                Reservation
+              </button>
+              <button class="menu-item" @click="navigateTo('/gallery')">
+                Gallery
+              </button>
+              <button class="menu-item" @click="navigateTo('/blog')">
+                Blog
+              </button>
+              <button class="menu-item" @click="navigateTo('/contact')">
+                Contact
+              </button>
+            </div>
 
             <div class="image-scroller right">
               <div class="image-wrapper">
@@ -38,19 +70,16 @@
         </Dialog>
       </template>
       <template #center>
-        <Image src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b37dca20c9b0c68f52979d_nvblast.svg"
-          class="ml-8 pl-7">
+        <Image
+          src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b37dca20c9b0c68f52979d_nvblast.svg"
+          class="ml-8 pl-7"
+        >
         </Image>
       </template>
       <template #end>
         <div class="right-section">
-          <div>
-            <i class="pi pi-search search-icon color-orange mr-4" style="font-size: 1.25rem"></i>
-            <span class="cart color-orange text-xl">Cart (0)</span>
-          </div>
-
           <!-- Nếu chưa login: hiện nút Login mở dialog -->
-          <div v-if="!isLoggedIn">
+          <div v-if="!cartStore.isLoggedIn">
             <Button
               label="Login"
               size="large"
@@ -64,6 +93,13 @@
             v-else
             class="user-info flex align-items-center color-orange relative"
           >
+            <Button
+              class="p-button-text color-orange mr-3"
+              @click="openCartDialog"
+            >
+              Cart ({{ cartStore.cartItems.length }})
+            </Button>
+
             <Button
               class="p-button-text color-orange"
               aria-haspopup="true"
@@ -83,6 +119,7 @@
             size="large"
             label="Reserve my table"
             class="reserve-button p-3"
+            @click="navigateTo('/reservation')"
           />
         </div>
 
@@ -126,6 +163,79 @@
             />
           </div>
         </Dialog>
+        <!-- Cart Dialog -->
+        <Dialog
+          v-model:visible="showCartDialog"
+          :modal="false"
+          :closable="true"
+          :position="'right'"
+          :style="{
+            width: '400px',
+            height: '100vh',
+            backgroundColor: '#180318',
+          }"
+          class="cart-dialog"
+        >
+          <template #header>
+            <h3 class="text-white m-0">YOUR CART</h3>
+          </template>
+
+          <div
+            v-if="cartStore.cartItems.length === 0"
+            class="empty-cart flex flex-column align-items-center justify-content-center h-full"
+          >
+            <!-- Placeholder for cart illustration -->
+            <div class="cart-illustration mb-4">
+              <Image
+                height="600"
+                width="350"
+                src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b48b1f6ab2d2a7c5617a9a_empty-cart.svg"
+              ></Image>
+            </div>
+
+            <Button
+              label="See our menu"
+              class="p-button-rounded bg-yellow-500 border-none text-black w-5"
+              @click="navigateTo('/menu')"
+            />
+          </div>
+
+          <div v-else class="cart-items">
+            <div
+              v-for="item in cartStore.cartItems"
+              :key="item.product_id"
+              class="cart-item flex justify-content-between align-items-center mb-3"
+            >
+              <div class="flex flex-column">
+                <span class="text-white font-bold">{{ item.name }}</span>
+                <span class="text-gray-400 text-sm">{{ item.price }}</span>
+              </div>
+              <div class="flex align-items-center">
+                <Button
+                  icon="pi pi-minus"
+                  class="p-button-rounded p-button-text p-button-sm text-white mr-2"
+                  @click="decreaseQuantity(item)"
+                />
+                <span class="text-white">{{ item.quantity }}</span>
+                <Button
+                  icon="pi pi-plus"
+                  class="p-button-rounded p-button-text p-button-sm text-white ml-2 mr-2"
+                  @click="increaseQuantity(item)"
+                />
+                <Button
+                  icon="pi pi-trash"
+                  class="p-button-rounded p-button-text p-button-sm text-white"
+                  @click="removeItem(item)"
+                />
+              </div>
+            </div>
+            <Button
+              label="Checkout"
+              class="w-full bg-yellow-500 border-none mt-4 text-black"
+              @click="checkout"
+            />
+          </div>
+        </Dialog>
       </template>
     </Toolbar>
   </div>
@@ -139,8 +249,12 @@ import Dialog from "primevue/dialog";
 import Button from "primevue/button";
 import InputText from "primevue/inputtext";
 import Menu from "primevue/menu";
-
+import { useCartStore } from "@/store/cart";
 export default {
+  setup() {
+    const cartStore = useCartStore();
+    return { cartStore };
+  },
   components: {
     Image,
     Toolbar,
@@ -154,12 +268,13 @@ export default {
       menuItems: [],
       position: "center",
       visible: false,
-
+      cartItems: [],
       isLoggedIn: false,
       userName: "",
       loginEmail: "",
       loginPassword: "",
       showLoginDialog: false,
+      showCartDialog: false,
 
       loginError: "", // để hiển thị lỗi
       accountMenuItems: [
@@ -178,65 +293,154 @@ export default {
       this.position = position;
       this.visible = true;
     },
-
-    toggleAccountMenu(event) {
-      this.$refs.accountMenu.toggle(event);
+    navigateTo(path) {
+      this.$router.push(path);
+      this.visible = false;
+      this.showCartDialog = false;
     },
-
+    openCartDialog() {
+      this.showCartDialog = true;
+    },
     async login() {
       if (!this.userName || !this.loginPassword) {
         this.loginError = "Please enter username and password";
         return;
       }
-
       try {
         const res = await axios.post("http://localhost:5734/api/user/login", {
           name: this.userName,
-          email: this.loginEmail,
           password: this.loginPassword,
         });
-
-        if (res.data && res.data.token) {
-          // Lưu token localStorage (hoặc Vuex, Pinia,...)
-          localStorage.setItem("token", res.data.token);
+        if (res.data && res.data.token && res.data.user) {
+          await this.cartStore.setUser(
+            res.data.user.id,
+            res.data.user.name,
+            res.data.token
+          );
           localStorage.setItem("name", res.data.user.name);
-
-          this.isLoggedIn = true;
-          this.userName = res.data.user.name || this.userName;
-          this.loginEmail = "";
           this.loginPassword = "";
           this.showLoginDialog = false;
           this.loginError = "";
-
-          // TODO: bạn có thể thiết lập axios header Authorization ở đây nếu cần
-          axios.defaults.headers.common[
-            "Authorization"
-          ] = `Bearer ${res.data.token}`;
+          this.$toast.add({
+            severity: "success",
+            summary: "Success",
+            detail: "Logged in successfully",
+            life: 3000,
+          });
         } else {
-          this.loginError = "Login failed: no token received";
+          this.loginError = "Login failed: No token or user data received";
         }
       } catch (error) {
         this.loginError = error.response?.data?.message || "Login failed";
+        this.$toast.add({
+          severity: "error",
+          summary: "Error",
+          detail: this.loginError,
+          life: 3000,
+        });
+        console.error("Login error:", error.response?.data || error.message);
       }
     },
-
     logout() {
-      this.isLoggedIn = false;
-      this.userName = "";
-      localStorage.removeItem("token");
-      localStorage.removeItem("name");
-      delete axios.defaults.headers.common["Authorization"];
+      this.cartStore.logout();
+      this.$toast.add({
+        severity: "success",
+        summary: "Success",
+        detail: "Logged out successfully",
+        life: 3000,
+      });
+    },
+    async increaseQuantity(item) {
+      const success = await this.cartStore.addToCart(item, 1);
+      if (success) {
+        this.$toast.add({
+          severity: "success",
+          summary: "Success",
+          detail: `Increased quantity of ${item.name}`,
+          life: 3000,
+        });
+      } else {
+        this.$toast.add({
+          severity: "error",
+          summary: "Error",
+          detail: "Failed to update quantity",
+          life: 3000,
+        });
+      }
+    },
+    async decreaseQuantity(item) {
+      const success = await this.cartStore.addToCart(item, -1);
+      if (success) {
+        this.$toast.add({
+          severity: "success",
+          summary: "Success",
+          detail: `Decreased quantity of ${item.name}`,
+          life: 3000,
+        });
+      } else {
+        this.$toast.add({
+          severity: "error",
+          summary: "Error",
+          detail: "Failed to update quantity",
+          life: 3000,
+        });
+      }
+    },
+    async removeItem(item) {
+      const success = await this.cartStore.removeItem(item.product_id);
+      if (success) {
+        this.$toast.add({
+          severity: "success",
+          summary: "Success",
+          detail: `${item.name} removed from cart`,
+          life: 3000,
+        });
+      } else {
+        this.$toast.add({
+          severity: "error",
+          summary: "Error",
+          detail: "Failed to remove item",
+          life: 3000,
+        });
+      }
+    },
+    async checkout() {
+      try {
+        const response = await axios.post(
+          "http://localhost:5734/api/checkout",
+          {
+            user_id: this.cartStore.userId,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
+        if (response.data.success) {
+          this.cartStore.cartItems = [];
+          this.showCartDialog = false;
+          this.$toast.add({
+            severity: "success",
+            summary: "Success",
+            detail: "Checkout completed successfully",
+            life: 3000,
+          });
+        }
+      } catch (error) {
+        this.$toast.add({
+          severity: "error",
+          summary: "Error",
+          detail: "Checkout failed",
+          life: 3000,
+        });
+      }
     },
   },
   mounted() {
-    // Nếu có token trong localStorage thì giả lập đang login
-    const token = localStorage.getItem("token");
     const name = localStorage.getItem("name");
-    if (token) {
-      this.isLoggedIn = true;
-      // Bạn có thể decode token hoặc gọi API get info user để lấy tên user
-      this.userName = name; // tạm đặt tên
-      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    if (name) {
+      this.userName = name;
     }
   },
 };
@@ -419,5 +623,27 @@ export default {
 
 .login-dialog-content .mb-4 {
   margin-bottom: 1rem;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5rem 10rem;
+  font-family: "Playfair Display", serif;
+}
+
+.menu-item {
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  text-align: left;
+  padding: 0;
+}
+
+.menu-item:hover {
+  color: #f9b233;
 }
 </style>

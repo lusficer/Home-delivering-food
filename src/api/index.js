@@ -15,10 +15,6 @@ const server = http.createServer(app);
 app.use(express.json());
 app.use(cors(corsConfig));
 
-app.get("/", (req, res) => {
-  res.send("Hello, MySQL API!");
-});
-
 app.use("/api", routes); // <-- Gắn router vào prefix /api
 // Khởi động server
 server.listen(process.env.PORT || 3000, () => {
