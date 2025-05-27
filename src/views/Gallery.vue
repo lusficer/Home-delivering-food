@@ -9,54 +9,64 @@
             <div class="header-gallery-item">
               <img
                 src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b9e94db52081be12b9abef_gallery-03.jpg"
-                alt="Header image 1" />
+                alt="Header image 1"
+              />
             </div>
             <div class="header-gallery-item">
               <img
                 src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b9e950622443d977947f46_gallery-09.jpg"
-                alt="Header image 2" />
+                alt="Header image 2"
+              />
             </div>
             <div class="header-gallery-item">
               <img
                 src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b9e95008217ff5cd72eb99_gallery-08.jpg"
-                alt="Header image 3" />
+                alt="Header image 3"
+              />
             </div>
             <div class="header-gallery-item">
               <img
                 src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b9e94f2d42e49d8ca2a14c_gallery-04.jpg"
-                alt="Header image 4" />
+                alt="Header image 4"
+              />
             </div>
             <div class="header-gallery-item">
               <img
                 src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b9e94f6d4f5f51223d4ad4_gallery-07.jpg"
-                alt="Header image 5" />
+                alt="Header image 5"
+              />
             </div>
           </div>
           <div class="header-gallery-marquee-wrap">
             <div class="header-gallery-item">
               <img
                 src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b9e94db52081be12b9abef_gallery-03.jpg"
-                alt="Header image 1" />
+                alt="Header image 1"
+              />
             </div>
             <div class="header-gallery-item">
               <img
                 src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b9e950622443d977947f46_gallery-09.jpg"
-                alt="Header image 2" />
+                alt="Header image 2"
+              />
             </div>
             <div class="header-gallery-item">
               <img
                 src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b9e95008217ff5cd72eb99_gallery-08.jpg"
-                alt="Header image 3" />
+                alt="Header image 3"
+              />
             </div>
             <div class="header-gallery-item">
               <img
                 src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b9e94f2d42e49d8ca2a14c_gallery-04.jpg"
-                alt="Header image 4" />
+                alt="Header image 4"
+              />
             </div>
             <div class="header-gallery-item">
               <img
                 src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b9e94f6d4f5f51223d4ad4_gallery-07.jpg"
-                alt="Header image 5" />
+                alt="Header image 5"
+              />
             </div>
           </div>
         </div>
@@ -66,54 +76,64 @@
             <div class="header-gallery-item">
               <img
                 src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65c0942b735b354f9935d049_menu-gallery-09.jpg"
-                alt="Header image 6" />
+                alt="Header image 6"
+              />
             </div>
             <div class="header-gallery-item">
               <img
                 src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65c09304fc0a99953ad4393d_menu-gallery-07.jpg"
-                alt="Header image 7" />
+                alt="Header image 7"
+              />
             </div>
             <div class="header-gallery-item">
               <img
                 src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65c0930478c33935f5b6f4df_menu-gallery-03.jpg"
-                alt="Header image 8" />
+                alt="Header image 8"
+              />
             </div>
             <div class="header-gallery-item">
               <img
                 src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65c09303c1b798cecfa620f0_menu-gallery-01.jpg"
-                alt="Header image 9" />
+                alt="Header image 9"
+              />
             </div>
             <div class="header-gallery-item">
               <img
                 src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b9e94eba3a2662628e4612_bg-gallery-01.jpg"
-                alt="Header image 10" />
+                alt="Header image 10"
+              />
             </div>
           </div>
           <div class="header-gallery-marquee-wrap">
             <div class="header-gallery-item">
               <img
                 src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65c0942b735b354f9935d049_menu-gallery-09.jpg"
-                alt="Header image 6" />
+                alt="Header image 6"
+              />
             </div>
             <div class="header-gallery-item">
               <img
                 src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65c09304fc0a99953ad4393d_menu-gallery-07.jpg"
-                alt="Header image 7" />
+                alt="Header image 7"
+              />
             </div>
             <div class="header-gallery-item">
               <img
                 src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65c0930478c33935f5b6f4df_menu-gallery-03.jpg"
-                alt="Header image 8" />
+                alt="Header image 8"
+              />
             </div>
             <div class="header-gallery-item">
               <img
                 src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65c09303c1b798cecfa620f0_menu-gallery-01.jpg"
-                alt="Header image 9" />
+                alt="Header image 9"
+              />
             </div>
             <div class="header-gallery-item">
               <img
                 src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b9e94eba3a2662628e4612_bg-gallery-01.jpg"
-                alt="Header image 10" />
+                alt="Header image 10"
+              />
             </div>
           </div>
         </div>
@@ -136,14 +156,16 @@
       </p>
 
       <div class="subscription-form">
-        <input type="email" placeholder="Enter your email address" class="email-field" />
+        <input
+          type="email"
+          placeholder="Enter your email address"
+          class="email-field"
+        />
         <button class="subscribe-btn">subscribe</button>
       </div>
     </div>
-
   </div>
   <Footer />
-
 </template>
 
 <script>

@@ -20,6 +20,7 @@
             size="large"
             label="Reserve table"
             class="reserve-button p-3"
+            @click="navigateTo('/reservation')"
           />
         </div>
         <!-- Phần video bên phải -->
@@ -72,6 +73,7 @@
               v-for="(item, index) in paginatedMenu"
               :key="index"
               class="item relative overflow-hidden"
+              @click="openItemDialog(item)"
             >
               <Image
                 :src="item.image"
@@ -94,6 +96,23 @@
               </div>
             </div>
           </div>
+
+          <Dialog v-model:visible="showDialog" modal header="Food detail">
+            <div class="text-center">
+              <Image height="500" width="100%" :src="selectedItem.image" />
+              <h3>{{ selectedItem.name }}</h3>
+              <p>{{ selectedItem.desciption }}</p>
+              <p class="text-yellow-400 text-xl font-bold">
+                {{ selectedItem.price }}
+              </p>
+              <Button
+                label="Thêm vào giỏ hàng"
+                @click="addToCart(selectedItem)"
+                class="mt-3 play-pause-button"
+              />
+            </div>
+          </Dialog>
+
           <!-- Phân trang -->
           <div class="pagination flex justify-content-center mt-6">
             <Button
@@ -123,8 +142,13 @@
 import NavBar from "../components/NavBar.vue";
 import Footer from "../components/Footer.vue";
 import Button from "primevue/button";
-
+import axios from "axios";
+import { useCartStore } from "@/store/cart";
 export default {
+  setup() {
+    const cartStore = useCartStore();
+    return { cartStore };
+  },
   components: {
     NavBar,
     Footer,
@@ -136,217 +160,221 @@ export default {
       currentPage: 1, // Trang hiện tại
       itemsPerPage: 6, // Số món mỗi trang
       selectedType: "All", // Chọn mặc định
-      menu: [
-        {
-          type: "Breakfast",
-          name: "EGGS BENEDICT",
-          desc: "Poached eggs, Canadian bacon, English muffin, hollandaise sauce.",
-          price: "$45.00 USD",
-          image: "/Breakfast/Egg.jpg",
-          link: "/menu/breakfast",
-        },
-        {
-          type: "Beverage",
-          name: "BREWED COFFEE",
-          desc: "Coffee Beans, Filtered Water, Milk or Cream, Sugar.",
-          price: "$125.00 USD",
-          image:
-            "/Beverage/delicious-coffee-cups-arrangement_23-2149600728.avif",
-          link: "/menu/beverage",
-        },
-        {
-          type: "Lunch",
-          name: "FISH TACOS",
-          desc: "White fish fillets, Corn or flour tortillas, Cabbage slaw, Avocado, Lime, and Cilantro.",
-          price: "$67.39 USD",
-          image: "/Lunch/Tacos.jpg",
-          link: "/menu/lunch",
-        },
-        {
-          type: "Dessert",
-          name: "LEMON TART",
-          desc: "Lemon juice and zest, Sugar, Eggs, Heavy cream, All-purpose flour, and Unsalted butter.",
-          price: "$98.50 USD",
-          image: "/Dessert/lemon-cheesecake-table_140725-7371.jpg",
-          link: "/menu/dessert",
-        },
-        {
-          type: "Dinner",
-          name: "SHRIMP SCAMPI",
-          desc: "Shrimp, Olive oil, Butter, Garlic, Lemon juice, Parsley, Red pepper flakes, Spaghetti.",
-          price: "$125.00 USD",
-          image: "/Dinner/Shrimp.jpg",
-          link: "/menu/dinner",
-        },
-        {
-          type: "Brunch",
-          name: "SALMON BAGELS",
-          desc: "Bagels, Cream cheese, Smoked salmon, Capers, Red onion, Fresh dill, Lemon wedges.",
-          price: "$59.99 USD",
-          image: "/Brunch/Salmon.jpg",
-          link: "/menu/brunch",
-        },
-        {
-          type: "Breakfast",
-          name: "PANCAKE STACK",
-          desc: "Fluffy pancakes, Maple syrup, Fresh berries, Whipped cream, Butter.",
-          price: "$38.50 USD",
-          image: "/Breakfast/Pancakes.jpg",
-          link: "/menu/breakfast",
-        },
-        {
-          type: "Beverage",
-          name: "FRESH ORANGE JUICE",
-          desc: "Freshly squeezed oranges, Ice, Optional sugar syrup.",
-          price: "$35.00 USD",
-          image: "/Beverage/OrangeJuice.avif",
-          link: "/menu/beverage",
-        },
-        {
-          type: "Lunch",
-          name: "CHICKEN CAESAR SALAD",
-          desc: "Grilled chicken, Romaine lettuce, Croutons, Parmesan cheese, Caesar dressing.",
-          price: "$52.99 USD",
-          image: "/Lunch/CaesarSalad.avif",
-          link: "/menu/lunch",
-        },
-        {
-          type: "Dessert",
-          name: "CHOCOLATE LAVA CAKE",
-          desc: "Dark chocolate, Butter, Sugar, Eggs, Flour, Vanilla ice cream on the side.",
-          price: "$89.00 USD",
-          image: "/Dessert/ChocolateLava.avif",
-          link: "/menu/dessert",
-        },
-        {
-          type: "Dinner",
-          name: "GRILLED SALMON",
-          desc: "Salmon fillet, Lemon herb marinade, Asparagus, Mashed potatoes, Olive oil.",
-          price: "$135.00 USD",
-          image: "/Dinner/GrilledSalmon.avif",
-          link: "/menu/dinner",
-        },
-        {
-          type: "Brunch",
-          name: "AVOCADO TOAST",
-          desc: "Sourdough bread, Mashed avocado, Cherry tomatoes, Poached egg, Chili flakes.",
-          price: "$48.75 USD",
-          image: "/Brunch/AvocadoToast.avif",
-          link: "/menu/brunch",
-        },
-        {
-          type: "Beverage",
-          name: "MANGO SMOOTHIE",
-          desc: "Fresh mango, Yogurt, Honey, Ice, Mint leaves.",
-          price: "$45.00 USD",
-          image: "/Beverage/MangoSmoothie.avif",
-          link: "/menu/beverage",
-        },
-        {
-          type: "Breakfast",
-          name: "FRENCH TOAST",
-          desc: "Thick-cut bread, Eggs, Milk, Cinnamon, Maple syrup, Powdered sugar.",
-          price: "$42.00 USD",
-          image: "/Breakfast/FrenchToast.avif",
-          link: "/menu/breakfast",
-        },
-        {
-          type: "Lunch",
-          name: "BBQ PULLED PORK SANDWICH",
-          desc: "Slow-cooked pork, BBQ sauce, Coleslaw, Brioche bun, Pickles.",
-          price: "$65.00 USD",
-          image: "/Lunch/PulledPork.jpg",
-          link: "/menu/lunch",
-        },
-        {
-          type: "Brunch",
-          name: "QUICHE LORRAINE",
-          desc: "Pastry crust, Eggs, Heavy cream, Bacon, Gruyère cheese, Nutmeg.",
-          price: "$55.00 USD",
-          image: "/Brunch/Quiche.avif",
-          link: "/menu/brunch",
-        },
-        {
-          type: "Breakfast",
-          name: "PANCAKE STACK",
-          desc: "Fluffy pancakes, Maple syrup, Fresh berries, Whipped cream, Butter.",
-          price: "$40.25 USD",
-          image: "/Breakfast/Toast(3).jpg",
-          link: "/menu/breakfast",
-        },
-        {
-          type: "Beverage",
-          name: "OOLONG TEA",
-          desc: "Oolong tea leaves, Hot water, Optional honey or lemon.",
-          price: "$38.75 USD",
-          image: "/Beverage/hand-pouring-matcha-tea-cups_23-2148296737.jpg",
-          link: "/menu/beverage",
-        },
-        {
-          type: "Lunch",
-          name: "PIZZA HONEY SAUCE",
-          desc: "Pizza dough, Honey-based sauce, Mozzarella cheese, Pepperoni, Fresh basil.",
-          price: "$72.50 USD",
-          image: "/Lunch/Pizza(2).jpg",
-          link: "/menu/lunch",
-        },
-        {
-          type: "Dessert",
-          name: "CHOCOLATE LAVA CAKE",
-          desc: "Dark chocolate, Butter, Sugar, Eggs, Flour, Vanilla ice cream on the side.",
-          price: "$92.00 USD",
-          image: "/Dessert/ChocolateLava.avif",
-          link: "/menu/dessert",
-        },
-        {
-          type: "Brunch",
-          name: "SALMON",
-          desc: "Grilled salmon fillet, Sourdough bread, Mashed avocado, Poached egg, Chili flakes.",
-          price: "$62.80 USD",
-          image: "/Brunch/Salmon(1).jpg",
-          link: "/menu/brunch",
-        },
-        {
-          type: "Dinner",
-          name: "PARMESAN",
-          desc: "Breaded chicken breast, Marinara sauce, Mozzarella cheese, Parmesan, Spaghetti.",
-          price: "$120.00 USD",
-          image: "/Dinner/Parmesan(3).jpg",
-          link: "/menu/Dinner",
-        },
-        {
-          type: "Beverage",
-          name: "MANGO SMOOTHIE",
-          desc: "Fresh mango, Yogurt, Honey, Ice, Mint leaves.",
-          price: "$47.50 USD",
-          image: "/Beverage/Beverage.jpg",
-          link: "/menu/beverage",
-        },
-        {
-          type: "Breakfast",
-          name: "TACO & EGG",
-          desc: "Corn tortillas, Scrambled eggs, Cheddar cheese, Salsa, Avocado slices.",
-          price: "$49.00 USD",
-          image: "/Breakfast/Egg(2).jpg",
-          link: "/menu/breakfast",
-        },
-        {
-          type: "Lunch",
-          name: "BBQ PULLED PORK SANDWICH",
-          desc: "Slow-cooked pork, BBQ sauce, Coleslaw, Brioche bun, Pickles.",
-          price: "$68.00 USD",
-          image: "/Lunch/PulledPork.jpg",
-          link: "/menu/lunch",
-        },
-        {
-          type: "Dessert",
-          name: "TIRAMISU",
-          desc: "Mascarpone cheese, Espresso, Ladyfingers, Cocoa powder, Sugar.",
-          price: "$97.50 USD",
-          image: "/Dessert/Tiramisu.avif",
-          link: "/menu/dessert",
-        },
-      ],
+      // menu: [
+      //   {
+      //     type: "Breakfast",
+      //     name: "EGGS BENEDICT",
+      //     desc: "Poached eggs, Canadian bacon, English muffin, hollandaise sauce.",
+      //     price: "$45.00 USD",
+      //     image: "/Breakfast/Egg.jpg",
+      //     link: "/menu/breakfast",
+      //   },
+      //   {
+      //     type: "Beverage",
+      //     name: "BREWED COFFEE",
+      //     desc: "Coffee Beans, Filtered Water, Milk or Cream, Sugar.",
+      //     price: "$125.00 USD",
+      //     image:
+      //       "/Beverage/delicious-coffee-cups-arrangement_23-2149600728.avif",
+      //     link: "/menu/beverage",
+      //   },
+      //   {
+      //     type: "Lunch",
+      //     name: "FISH TACOS",
+      //     desc: "White fish fillets, Corn or flour tortillas, Cabbage slaw, Avocado, Lime, and Cilantro.",
+      //     price: "$67.39 USD",
+      //     image: "/Lunch/Tacos.jpg",
+      //     link: "/menu/lunch",
+      //   },
+      //   {
+      //     type: "Dessert",
+      //     name: "LEMON TART",
+      //     desc: "Lemon juice and zest, Sugar, Eggs, Heavy cream, All-purpose flour, and Unsalted butter.",
+      //     price: "$98.50 USD",
+      //     image: "/Dessert/lemon-cheesecake-table_140725-7371.jpg",
+      //     link: "/menu/dessert",
+      //   },
+      //   {
+      //     type: "Dinner",
+      //     name: "SHRIMP SCAMPI",
+      //     desc: "Shrimp, Olive oil, Butter, Garlic, Lemon juice, Parsley, Red pepper flakes, Spaghetti.",
+      //     price: "$125.00 USD",
+      //     image: "/Dinner/Shrimp.jpg",
+      //     link: "/menu/dinner",
+      //   },
+      //   {
+      //     type: "Brunch",
+      //     name: "SALMON BAGELS",
+      //     desc: "Bagels, Cream cheese, Smoked salmon, Capers, Red onion, Fresh dill, Lemon wedges.",
+      //     price: "$59.99 USD",
+      //     image: "/Brunch/Salmon.jpg",
+      //     link: "/menu/brunch",
+      //   },
+      //   {
+      //     type: "Breakfast",
+      //     name: "PANCAKE STACK",
+      //     desc: "Fluffy pancakes, Maple syrup, Fresh berries, Whipped cream, Butter.",
+      //     price: "$38.50 USD",
+      //     image: "/Breakfast/Pancakes.jpg",
+      //     link: "/menu/breakfast",
+      //   },
+      //   {
+      //     type: "Beverage",
+      //     name: "FRESH ORANGE JUICE",
+      //     desc: "Freshly squeezed oranges, Ice, Optional sugar syrup.",
+      //     price: "$35.00 USD",
+      //     image: "/Beverage/OrangeJuice.avif",
+      //     link: "/menu/beverage",
+      //   },
+      //   {
+      //     type: "Lunch",
+      //     name: "CHICKEN CAESAR SALAD",
+      //     desc: "Grilled chicken, Romaine lettuce, Croutons, Parmesan cheese, Caesar dressing.",
+      //     price: "$52.99 USD",
+      //     image: "/Lunch/CaesarSalad.avif",
+      //     link: "/menu/lunch",
+      //   },
+      //   {
+      //     type: "Dessert",
+      //     name: "CHOCOLATE LAVA CAKE",
+      //     desc: "Dark chocolate, Butter, Sugar, Eggs, Flour, Vanilla ice cream on the side.",
+      //     price: "$89.00 USD",
+      //     image: "/Dessert/ChocolateLava.avif",
+      //     link: "/menu/dessert",
+      //   },
+      //   {
+      //     type: "Dinner",
+      //     name: "GRILLED SALMON",
+      //     desc: "Salmon fillet, Lemon herb marinade, Asparagus, Mashed potatoes, Olive oil.",
+      //     price: "$135.00 USD",
+      //     image: "/Dinner/GrilledSalmon.avif",
+      //     link: "/menu/dinner",
+      //   },
+      //   {
+      //     type: "Brunch",
+      //     name: "AVOCADO TOAST",
+      //     desc: "Sourdough bread, Mashed avocado, Cherry tomatoes, Poached egg, Chili flakes.",
+      //     price: "$48.75 USD",
+      //     image: "/Brunch/AvocadoToast.avif",
+      //     link: "/menu/brunch",
+      //   },
+      //   {
+      //     type: "Beverage",
+      //     name: "MANGO SMOOTHIE",
+      //     desc: "Fresh mango, Yogurt, Honey, Ice, Mint leaves.",
+      //     price: "$45.00 USD",
+      //     image: "/Beverage/MangoSmoothie.avif",
+      //     link: "/menu/beverage",
+      //   },
+      //   {
+      //     type: "Breakfast",
+      //     name: "FRENCH TOAST",
+      //     desc: "Thick-cut bread, Eggs, Milk, Cinnamon, Maple syrup, Powdered sugar.",
+      //     price: "$42.00 USD",
+      //     image: "/Breakfast/FrenchToast.avif",
+      //     link: "/menu/breakfast",
+      //   },
+      //   {
+      //     type: "Lunch",
+      //     name: "BBQ PULLED PORK SANDWICH",
+      //     desc: "Slow-cooked pork, BBQ sauce, Coleslaw, Brioche bun, Pickles.",
+      //     price: "$65.00 USD",
+      //     image: "/Lunch/PulledPork.jpg",
+      //     link: "/menu/lunch",
+      //   },
+      //   {
+      //     type: "Brunch",
+      //     name: "QUICHE LORRAINE",
+      //     desc: "Pastry crust, Eggs, Heavy cream, Bacon, Gruyère cheese, Nutmeg.",
+      //     price: "$55.00 USD",
+      //     image: "/Brunch/Quiche.avif",
+      //     link: "/menu/brunch",
+      //   },
+      //   {
+      //     type: "Breakfast",
+      //     name: "PANCAKE STACK",
+      //     desc: "Fluffy pancakes, Maple syrup, Fresh berries, Whipped cream, Butter.",
+      //     price: "$40.25 USD",
+      //     image: "/Breakfast/Toast(3).jpg",
+      //     link: "/menu/breakfast",
+      //   },
+      //   {
+      //     type: "Beverage",
+      //     name: "OOLONG TEA",
+      //     desc: "Oolong tea leaves, Hot water, Optional honey or lemon.",
+      //     price: "$38.75 USD",
+      //     image: "/Beverage/hand-pouring-matcha-tea-cups_23-2148296737.jpg",
+      //     link: "/menu/beverage",
+      //   },
+      //   {
+      //     type: "Lunch",
+      //     name: "PIZZA HONEY SAUCE",
+      //     desc: "Pizza dough, Honey-based sauce, Mozzarella cheese, Pepperoni, Fresh basil.",
+      //     price: "$72.50 USD",
+      //     image: "/Lunch/Pizza(2).jpg",
+      //     link: "/menu/lunch",
+      //   },
+      //   {
+      //     type: "Dessert",
+      //     name: "CHOCOLATE LAVA CAKE",
+      //     desc: "Dark chocolate, Butter, Sugar, Eggs, Flour, Vanilla ice cream on the side.",
+      //     price: "$92.00 USD",
+      //     image: "/Dessert/ChocolateLava.avif",
+      //     link: "/menu/dessert",
+      //   },
+      //   {
+      //     type: "Brunch",
+      //     name: "SALMON",
+      //     desc: "Grilled salmon fillet, Sourdough bread, Mashed avocado, Poached egg, Chili flakes.",
+      //     price: "$62.80 USD",
+      //     image: "/Brunch/Salmon(1).jpg",
+      //     link: "/menu/brunch",
+      //   },
+      //   {
+      //     type: "Dinner",
+      //     name: "PARMESAN",
+      //     desc: "Breaded chicken breast, Marinara sauce, Mozzarella cheese, Parmesan, Spaghetti.",
+      //     price: "$120.00 USD",
+      //     image: "/Dinner/Parmesan(3).jpg",
+      //     link: "/menu/Dinner",
+      //   },
+      //   {
+      //     type: "Beverage",
+      //     name: "MANGO SMOOTHIE",
+      //     desc: "Fresh mango, Yogurt, Honey, Ice, Mint leaves.",
+      //     price: "$47.50 USD",
+      //     image: "/Beverage/Beverage.jpg",
+      //     link: "/menu/beverage",
+      //   },
+      //   {
+      //     type: "Breakfast",
+      //     name: "TACO & EGG",
+      //     desc: "Corn tortillas, Scrambled eggs, Cheddar cheese, Salsa, Avocado slices.",
+      //     price: "$49.00 USD",
+      //     image: "/Breakfast/Egg(2).jpg",
+      //     link: "/menu/breakfast",
+      //   },
+      //   {
+      //     type: "Lunch",
+      //     name: "BBQ PULLED PORK SANDWICH",
+      //     desc: "Slow-cooked pork, BBQ sauce, Coleslaw, Brioche bun, Pickles.",
+      //     price: "$68.00 USD",
+      //     image: "/Lunch/PulledPork.jpg",
+      //     link: "/menu/lunch",
+      //   },
+      //   {
+      //     type: "Dessert",
+      //     name: "TIRAMISU",
+      //     desc: "Mascarpone cheese, Espresso, Ladyfingers, Cocoa powder, Sugar.",
+      //     price: "$97.50 USD",
+      //     image: "/Dessert/Tiramisu.avif",
+      //     link: "/menu/dessert",
+      //   },
+      // ],
+      showDialog: false,
+      selectedItem: {},
+      cart: [],
+      menu: [],
     };
   },
   computed: {
@@ -378,9 +406,44 @@ export default {
       }
       this.isPlaying = !this.isPlaying;
     },
+    openItemDialog(item) {
+      this.selectedItem = item;
+      this.showDialog = true;
+    },
+    async addToCart(item) {
+      const success = await this.cartStore.addToCart(item);
+      if (success) {
+        this.showDialog = false;
+        this.$toast.add({
+          severity: "success",
+          summary: "Success",
+          detail: `${item.name} added to cart`,
+          life: 3000,
+        });
+      } else {
+        this.$toast.add({
+          severity: "error",
+          summary: "Error",
+          detail: this.cartStore.isLoggedIn
+            ? "Failed to add item to cart"
+            : "Please log in to add items to cart",
+          life: 3000,
+        });
+      }
+    },
+    navigateTo(path) {
+      this.$router.push(path);
+    },
   },
-  mounted() {
+
+  async mounted() {
     this.togglePlayPause();
+    try {
+      const response = await axios.get("http://localhost:5734/api/products");
+      this.menu = response.data;
+    } catch (error) {
+      console.error("Error fetching menu:", error);
+    }
   },
 };
 </script>

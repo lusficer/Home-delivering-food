@@ -155,6 +155,7 @@
       VALUABLE WORKS OF FOOD, AWAIT YOUR VISIT.
     </p>
   </div>
+  <Toast />
 
   <Footer></Footer>
 </template>
@@ -163,6 +164,7 @@
 import { onMounted, ref } from "vue";
 import NavBar from "@/components/NavBar.vue";
 import Footer from "@/components/Footer.vue";
+import { useToast } from "primevue/usetoast";
 import { Image } from "primevue";
 const name = ref("");
 const phone = ref("");
@@ -173,8 +175,40 @@ const people = ref("");
 const contactInfoRef = ref(null);
 const contactImageRef = ref(null);
 const contactHoursRef = ref(null);
+const toast = useToast();
+
 const submitForm = () => {
-  alert(`Table booked for ${name.value} on ${date.value} at ${time.value}`);
+  if (
+    !name.value ||
+    !phone.value ||
+    !email.value ||
+    !date.value ||
+    !time.value ||
+    !people.value
+  ) {
+    toast.add({
+      severity: "error",
+      summary: "Missing Fields",
+      detail: "Please fill in all fields",
+      life: 3000,
+    });
+    return;
+  }
+
+  toast.add({
+    severity: "success",
+    summary: "Reservation Confirmed",
+    detail: `Table booked for ${name.value} on ${date.value} at ${time.value}`,
+    life: 4000,
+  });
+
+  // Reset form if needed
+  name.value = "";
+  phone.value = "";
+  email.value = "";
+  date.value = "";
+  time.value = "";
+  people.value = "";
 };
 
 onMounted(() => {
@@ -258,7 +292,7 @@ onMounted(() => {
 
 .main-title {
   font-family: "Playfair Display", serif;
-  font-size: 42px;
+  font-size: 5rem;
   color: white;
   font-weight: 700;
 }
