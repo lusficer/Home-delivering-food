@@ -106,7 +106,7 @@
                 {{ selectedItem.price }}
               </p>
               <Button
-                label="Thêm vào giỏ hàng"
+                label="Add to cart"
                 @click="addToCart(selectedItem)"
                 class="mt-3 play-pause-button"
               />

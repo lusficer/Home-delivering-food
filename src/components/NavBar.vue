@@ -1,5 +1,5 @@
 <template>
-  <div class="navbar absolute w-full">
+  <div class="navbar fixed w-full" :class="{ scrolled: isScrolled }">
     <Toolbar
       class="w-full border-none border-bottom-3 border-yellow-400 bg-transparent"
     >
@@ -35,27 +35,76 @@
                 />
               </div>
             </div>
+            <div>
+              <div class="menu-grid">
+                <button class="menu-item" @click="navigateTo('/')">Home</button>
+                <button class="menu-item" @click="navigateTo('/about')">
+                  About
+                </button>
+                <button class="menu-item" @click="navigateTo('/menu')">
+                  Menu
+                </button>
+                <button class="menu-item" @click="navigateTo('/reservation')">
+                  Reservation
+                </button>
+                <button class="menu-item" @click="navigateTo('/gallery')">
+                  Gallery
+                </button>
+                <button class="menu-item" @click="navigateTo('/Chief')">
+                  Chief
+                </button>
+                <button class="menu-item" @click="navigateTo('/contact')">
+                  Contact
+                </button>
+              </div>
+              <div class="dialog-footer mt-8 relative">
+                <div class="footer-content">
+                  <!-- Call for Reservation -->
+                  <div class="reservation-call">
+                    <p class="call-text">CALL FOR RESERVATION</p>
+                    <a href="tel:+1234567892" class="phone-number"
+                      >+123 456 7892</a
+                    >
+                  </div>
 
-            <div class="menu-grid">
-              <button class="menu-item" @click="navigateTo('/')">Home</button>
-              <button class="menu-item" @click="navigateTo('/about')">
-                About
-              </button>
-              <button class="menu-item" @click="navigateTo('/menu')">
-                Menu
-              </button>
-              <button class="menu-item" @click="navigateTo('/reservation')">
-                Reservation
-              </button>
-              <button class="menu-item" @click="navigateTo('/gallery')">
-                Gallery
-              </button>
-              <button class="menu-item" @click="navigateTo('/blog')">
-                Blog
-              </button>
-              <button class="menu-item" @click="navigateTo('/contact')">
-                Contact
-              </button>
+                  <!-- Social Media -->
+                  <div class="social-media">
+                    <p class="social-text">Follow us on social media.</p>
+                    <div class="social-icons">
+                      <a
+                        href="https://facebook.com"
+                        target="_blank"
+                        class="social-icon"
+                      >
+                        <i class="pi pi-facebook"></i>
+                      </a>
+                      <a
+                        href="https://twitter.com"
+                        target="_blank"
+                        class="social-icon"
+                      >
+                        <i class="pi pi-twitter"></i>
+                      </a>
+                      <a
+                        href="https://youtube.com"
+                        target="_blank"
+                        class="social-icon"
+                      >
+                        <i class="pi pi-youtube"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Decoration Image -->
+                <div class="decoration-image absolute">
+                  <img
+                    src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b38e1b8476081164cfc6ae_decoration-03.svg"
+                    alt="Decoration"
+                    class="decoration"
+                  />
+                </div>
+              </div>
             </div>
 
             <div class="image-scroller right">
@@ -70,11 +119,13 @@
         </Dialog>
       </template>
       <template #center>
-        <Image
-          src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b37dca20c9b0c68f52979d_nvblast.svg"
-          class="ml-8 pl-7"
-        >
-        </Image>
+        <RouterLink to="/" class="Image-link"
+          ><Image
+            src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b37dca20c9b0c68f52979d_nvblast.svg"
+            class="ml-8 pl-7"
+          >
+          </Image
+        ></RouterLink>
       </template>
       <template #end>
         <div class="right-section">
@@ -232,7 +283,53 @@
             <Button
               label="Checkout"
               class="w-full bg-yellow-500 border-none mt-4 text-black"
-              @click="checkout"
+              @click="openCheckoutDialog"
+            />
+          </div>
+        </Dialog>
+        <!-- Dialog checkout -->
+        <Dialog
+          header="Checkout Information"
+          v-model:visible="showCheckoutDialog"
+          modal
+          closable
+          style="width: 400px"
+          :dismissable-mask="true"
+        >
+          <div class="checkout-dialog-content">
+            <InputText
+              v-model="recipientName"
+              placeholder="Recipient Name"
+              class="p-inputtext-sm w-full mb-3"
+              type="text"
+              autocomplete="name"
+            />
+            <InputText
+              v-model="recipientPhone"
+              placeholder="Phone Number"
+              class="p-inputtext-sm w-full mb-3"
+              type="tel"
+              autocomplete="tel"
+            />
+            <InputText
+              v-model="recipientAddress"
+              placeholder="Address"
+              class="p-inputtext-sm w-full mb-3"
+              type="text"
+              autocomplete="address-line1"
+            />
+
+            <small
+              v-if="checkoutError"
+              style="color: red; margin-bottom: 10px; display: block"
+            >
+              {{ checkoutError }}
+            </small>
+
+            <Button
+              label="Confirm Checkout"
+              class="w-full bg-orange-500 border-none mt-3"
+              @click="confirmCheckout"
             />
           </div>
         </Dialog>
@@ -250,6 +347,7 @@ import Button from "primevue/button";
 import InputText from "primevue/inputtext";
 import Menu from "primevue/menu";
 import { useCartStore } from "@/store/cart";
+import { RouterLink } from "vue-router";
 export default {
   setup() {
     const cartStore = useCartStore();
@@ -262,6 +360,7 @@ export default {
     InputText,
     Dialog,
     Menu,
+    RouterLink,
   },
   data() {
     return {
@@ -275,8 +374,7 @@ export default {
       loginPassword: "",
       showLoginDialog: false,
       showCartDialog: false,
-
-      loginError: "", // để hiển thị lỗi
+      loginError: "",
       accountMenuItems: [
         {
           label: "Logout",
@@ -286,6 +384,12 @@ export default {
           },
         },
       ],
+      isScrolled: false,
+      showCheckoutDialog: false,
+      recipientName: "",
+      recipientPhone: "",
+      recipientAddress: "",
+      checkoutError: "",
     };
   },
   methods: {
@@ -404,12 +508,24 @@ export default {
         });
       }
     },
-    async checkout() {
+    async confirmCheckout() {
+      if (
+        !this.recipientName ||
+        !this.recipientPhone ||
+        !this.recipientAddress
+      ) {
+        this.checkoutError = "Please fill in all fields";
+        return;
+      }
+
       try {
         const response = await axios.post(
           "http://localhost:5734/api/checkout",
           {
             user_id: this.cartStore.userId,
+            recipient_name: this.recipientName,
+            recipient_phone: this.recipientPhone,
+            recipient_address: this.recipientAddress,
           },
           {
             headers: {
@@ -419,6 +535,7 @@ export default {
         );
         if (response.data.success) {
           this.cartStore.cartItems = [];
+          this.showCheckoutDialog = false;
           this.showCartDialog = false;
           this.$toast.add({
             severity: "success",
@@ -428,13 +545,27 @@ export default {
           });
         }
       } catch (error) {
+        this.checkoutError = error.response?.data?.message || "Checkout failed";
         this.$toast.add({
           severity: "error",
           summary: "Error",
-          detail: "Checkout failed",
+          detail: this.checkoutError,
           life: 3000,
         });
+        console.error("Checkout error:", error.response?.data || error.message);
       }
+    },
+    openCheckoutDialog() {
+      this.showCheckoutDialog = true;
+      this.recipientName = "";
+      this.recipientPhone = "";
+      this.recipientAddress = "";
+      this.checkoutError = "";
+    },
+    handleScroll() {
+      console.log("Scroll event triggered, scrollY:", window.scrollY); // Gỡ lỗi
+      this.isScrolled = window.scrollY > 0;
+      console.log("isScrolled updated to:", this.isScrolled); // Gỡ lỗi
     },
   },
   mounted() {
@@ -442,17 +573,41 @@ export default {
     if (name) {
       this.userName = name;
     }
+    console.log("Adding scroll event listener"); // Gỡ lỗi
+    window.addEventListener("scroll", this.handleScroll);
+    // Kiểm tra ban đầu
+    this.handleScroll();
+  },
+  beforeUnmount() {
+    console.log("Removing scroll event listener"); // Gỡ lỗi
+    window.removeEventListener("scroll", this.handleScroll);
   },
 };
 </script>
 
-<style scoped>
+<style>
+.p-dialog {
+  max-height: 100% !important;
+  margin: 0 !important;
+}
+
+.p-dialog-content {
+  height: 100%;
+  width: 100%;
+}
+
 .navbar {
   background: transparent !important;
   padding: 10px 20px;
   display: flex;
   align-items: center;
-  z-index: 10;
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+}
+
+.navbar.scrolled {
+  background-color: white !important;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .right-section {
@@ -492,7 +647,6 @@ export default {
   overflow: hidden;
   z-index: 1;
   transition: color 0.5s ease;
-  /* Chỉ transition màu chữ */
 }
 
 .reserve-button::before {
@@ -503,12 +657,10 @@ export default {
   width: 0;
   height: 0;
   background-color: #fff6ff;
-  /* Màu khi hover */
   border-radius: 200px;
   transform: translate(-50%, -50%);
   z-index: -1;
   transition: width 1s ease, height 0.5s ease;
-  /* Transition cho chiều rộng và cao */
 }
 
 .reserve-button:hover {
@@ -518,7 +670,6 @@ export default {
 
 .reserve-button:hover::before {
   width: 200%;
-  /* Lan rộng hơn kích thước button */
   height: 200%;
 }
 
@@ -534,13 +685,12 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 24rem;
+  height: 35rem;
   padding: 0 5%;
 }
 
 .image-scroller {
-  width: 200px;
-  /* Điều chỉnh kích thước cột */
+  width: 300px;
   height: 100%;
   overflow: hidden;
   position: relative;
@@ -563,18 +713,16 @@ export default {
 }
 
 .image-wrapper img {
-  width: 180px;
+  width: 80%;
   height: auto;
   border-radius: 200px 200px 0 0;
   margin: 20px 0;
 }
 
-/* Hiệu ứng cuộn liên tục */
 @keyframes bounceScroll {
   0% {
     transform: translateY(0%);
   }
-
   100% {
     transform: translateY(-50%);
   }
@@ -584,23 +732,20 @@ export default {
   0% {
     transform: translateY(-50%);
   }
-
   100% {
     transform: translateY(0%);
   }
 }
 
-/* Tùy chỉnh hover cho nút menu */
 .menu-button {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .menu-button:hover {
   background-color: #f9b233 !important;
-  /* Màu tím khi hover */
   color: white !important;
-  /* Màu chữ trắng khi hover */
 }
+
 .login-dialog-content .p-inputtext-sm {
   font-size: 0.9rem;
   padding: 8px 10px;
@@ -609,6 +754,7 @@ export default {
 .login-dialog-content .p-inputtext-sm:hover {
   border: 1px solid #f9b233;
 }
+
 .login-dialog-content .p-inputtext-sm:focus {
   border: 1px solid #f9b233;
 }
@@ -641,9 +787,94 @@ export default {
   transition: color 0.3s ease;
   text-align: left;
   padding: 0;
+  font-family: "Playfair Display", serif;
+  padding-bottom: 1rem;
 }
 
 .menu-item:hover {
   color: #f9b233;
+}
+
+.dialog-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 20px;
+}
+
+.reservation-call {
+  text-align: left;
+}
+
+.call-text {
+  color: white;
+  font-size: 1.75rem;
+  font-weight: 500;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  font-family: "Playfair Display", serif;
+}
+
+.phone-number {
+  color: white;
+  font-size: 1.75rem;
+  text-decoration: none;
+}
+
+.phone-number:hover {
+  background-color: unset;
+}
+
+.social-media {
+  text-align: right;
+}
+
+.social-text {
+  color: #c2bec2;
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+  font-family: "Playfair Display", serif;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+}
+
+.social-icons i {
+  font-size: 2.5rem;
+}
+
+.social-icon {
+  text-decoration: none;
+  color: white;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.decoration-image {
+  top: 2rem;
+}
+
+.decoration {
+  width: 10rem;
+  height: auto;
+  opacity: 0.3;
+  transform: rotate(20deg);
+}
+
+.Image-link:hover {
+  background-color: unset;
 }
 </style>

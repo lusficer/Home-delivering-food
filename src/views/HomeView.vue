@@ -1,5 +1,5 @@
 <template>
-  <div class="app-container relative overflow-hidden">
+  <div class="app-container relative">
     <!-- Hero Section: Video background and introductory content -->
     <video
       autoplay
@@ -281,32 +281,32 @@ export default {
         {
           label: "Breakfast",
           src: "/Breakfast/Egg.jpg",
-          link: "/menu/breakfast",
+          link: "/menu",
         },
         {
           label: "Brunch",
           src: "/Brunch/Burrito(3).jpg",
-          link: "/menu/brunch",
+          link: "/menu",
         },
         {
           label: "Lunch",
           src: "/Lunch/Pizza.jpg",
-          link: "/menu/lunch",
+          link: "/menu",
         },
         {
           label: "Dinner",
           src: "/Dinner/Cake.jpg",
-          link: "/menu/dinner",
+          link: "/menu",
         },
         {
           label: "Dessert",
           src: "/Dessert/lemon-cheesecake-table_140725-7371.jpg",
-          link: "/menu/dessert",
+          link: "/menu",
         },
         {
           label: "Beverage",
           src: "/Beverage/cake-wooden-table_155003-2443.jpg",
-          link: "/menu/beverage",
+          link: "/menu",
         },
       ],
       // Signature dishes for the Signature Section
@@ -317,7 +317,7 @@ export default {
           desc: "Poached eggs, Canadian bacon, English muffin, hollandaise sauce.",
           price: "$45.00 USD",
           image: "/Breakfast/Egg.jpg",
-          link: "/menu/breakfast",
+          link: "/menu",
         },
         {
           type: "Beverage",
@@ -326,7 +326,7 @@ export default {
           price: "$125.00 USD",
           image:
             "/Beverage/delicious-coffee-cups-arrangement_23-2149600728.avif",
-          link: "/menu/beverage",
+          link: "/menu",
         },
         {
           type: "Lunch",
@@ -334,7 +334,7 @@ export default {
           desc: "White fish fillets, Corn or flour tortillas, Cabbage slaw, Avocado, Lime, and Cilantro.",
           price: "$67.39 USD",
           image: "/Lunch/Tacos.jpg",
-          link: "/menu/lunch",
+          link: "/menu",
         },
         {
           type: "Dessert",
@@ -342,7 +342,7 @@ export default {
           desc: "Lemon juice and zest, Sugar, Eggs, Heavy cream, All-purpose flour, and Unsalted butter.",
           price: "$98.50 USD",
           image: "/Dessert/lemon-cheesecake-table_140725-7371.jpg",
-          link: "/menu/dessert",
+          link: "/menu",
         },
         {
           type: "Dinner",
@@ -350,7 +350,7 @@ export default {
           desc: "Shrimp, Olive oil, Butter, Garlic, Lemon juice, Parsley, Red pepper flakes, Spaghetti.",
           price: "$125.00 USD",
           image: "/Dinner/Shrimp.jpg",
-          link: "/menu/dinner",
+          link: "/menu",
         },
         {
           type: "Brunch",
@@ -358,7 +358,7 @@ export default {
           desc: "Bagels, Cream cheese, Smoked salmon, Capers, Red onion, Fresh dill, Lemon wedges.",
           price: "$59.99 USD",
           image: "/Brunch/Salmon.jpg",
-          link: "/menu/brunch",
+          link: "/menu",
         },
       ],
       // Testimonials for the Testimonial Section

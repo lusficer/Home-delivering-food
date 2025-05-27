@@ -23,33 +23,18 @@
         <div class="form-row">
           <div class="input-group">
             <label>Name</label>
-            <input
-              type="text"
-              v-model="name"
-              placeholder="Your Name"
-              required
-            />
+            <input type="text" v-model="name" required />
           </div>
           <div class="input-group">
             <label>Phone No</label>
-            <input
-              type="tel"
-              v-model="phone"
-              placeholder="e.g. 123-456-7890"
-              required
-            />
+            <input type="tel" v-model="phone" required />
           </div>
         </div>
 
         <div class="form-row">
           <div class="input-group full-width">
             <label>Email Id</label>
-            <input
-              type="email"
-              v-model="email"
-              placeholder="you@example.com"
-              required
-            />
+            <input type="email" v-model="email" required />
           </div>
         </div>
 
@@ -67,13 +52,7 @@
         <div class="form-row">
           <div class="input-group full-width">
             <label>Number Of People</label>
-            <input
-              type="number"
-              v-model="people"
-              placeholder="e.g. 2"
-              min="1"
-              required
-            />
+            <input type="number" v-model="people" min="1" required />
           </div>
         </div>
 
@@ -135,9 +114,7 @@
           height="670"
           class="Follow-image relative"
         />
-        <p class="image-label text-8xl w-screen mt-4 absolute">
-          FOLLOW US ON INSTAGRAM
-        </p>
+        <p class="image-label w-screen mt-7 absolute">FOLLOW US ON INSTAGRAM</p>
       </div>
     </div>
     <!-- <div class="image-container flex align-content-around flex-wrap left"></div> -->
@@ -271,8 +248,11 @@ onMounted(() => {
 }
 
 .hero-content {
-  text-align: left;
+  text-align: center; /* Thay từ text-align: left thành center để căn giữa */
   color: white;
+  width: 100%; /* Đảm bảo phần tử chiếm toàn bộ chiều rộng để căn giữa hiệu quả */
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .welcome-text {
@@ -281,20 +261,25 @@ onMounted(() => {
   color: gold;
   font-size: 18px;
   margin-bottom: 10px;
+  justify-content: center; /* Đã có flex, giữ nguyên để hỗ trợ căn giữa */
 }
 
 .description {
   font-size: 16px;
-  margin: 0 0 20px;
+  margin: 0 auto 20px; /* Sử dụng margin: 0 auto để căn giữa theo chiều ngang */
   color: #eee;
-  max-width: 90%;
+  max-width: 70%;
+  text-align: center; /* Đảm bảo văn bản bên trong được căn giữa */
 }
 
 .main-title {
   font-family: "Playfair Display", serif;
-  font-size: 5rem;
+  font-size: 4rem;
   color: white;
-  font-weight: 700;
+  font-weight: 400;
+  line-height: 1.2rem;
+  justify-content: center; /* Đã có flex, giữ nguyên để hỗ trợ căn giữa */
+  margin-bottom: 3rem;
 }
 
 .reservation-form {
@@ -458,6 +443,7 @@ onMounted(() => {
   left: 0;
   color: #fbc029;
   font-family: "Playfair Display", serif;
+  font-size: 4.5rem;
 }
 
 .Follow-image {

@@ -1,20 +1,27 @@
 <template>
   <div class="w-screen">
     <RouterView />
+    <Toast />
   </div>
 </template>
+
 <script>
-// import HeroSection from "./components/HeroSection.vue"; // Phần giới thiệu trang
-// import ReservationForm from "./components/ReservationForm.vue"; // Form đặt bàn
 import { RouterLink, RouterView } from "vue-router";
 import "/node_modules/primeflex/primeflex.css";
 import Toast from "primevue/toast";
 export default {
   components: {
-    // HeroSection,
-    // ReservationForm,
     Toast,
   },
 };
 </script>
-<style></style>
+
+<style>
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: auto !important;
+  overflow-y: auto !important;
+}
+</style>

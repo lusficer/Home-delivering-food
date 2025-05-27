@@ -24,7 +24,7 @@
             href="mailto:info@example.com"
             class="text-300 text-primary pl-6 border-left-1"
           >
-            Info@example.com
+            NvBlast@gmail.com
           </h3>
         </div>
 
