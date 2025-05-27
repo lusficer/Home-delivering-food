@@ -19,7 +19,7 @@
                 <div role="list" class="grid-chef w-dyn-items">
                     <div v-for="(chef, index) in chefs" :key="chef.id" role="listitem" class="w-dyn-item"
                         @click="selectChef(chef)" :style="{ '--item-index': index }">
-                        <a :href="`/chef/${chef.slug}`" class="chef-item w-inline-block">
+                        <router-link :to="`/chef/${chef.slug}`" class="chef-item w-inline-block">
                             <div class="chef-item-title-wrap">
                                 <div class="chef-job-title">{{ chef.jobTitle }}</div>
                                 <h2 class="chef-item-title">{{ chef.name }}</h2>
@@ -27,7 +27,7 @@
                             <div class="chef-item-image-wrap">
                                 <img :src="chef.image" alt="Team Image" loading="lazy" class="chef-item-image" />
                             </div>
-                        </a>
+                        </router-link>
                     </div>
                 </div>
             </div>
@@ -62,8 +62,10 @@ import NavBar from '@/components/NavBar.vue';
 import Footer from '@/components/Footer.vue';
 import { ref, computed } from 'vue';
 
+
+
 export default {
-    name: 'ChefPage',
+    name: 'Chef',
     components: {
         NavBar,
         Footer,
@@ -134,7 +136,7 @@ export default {
 
         setTimeout(() => {
             isVisible.value = true;
-        }, 500);
+        }, 600);
 
         return {
             chefs,

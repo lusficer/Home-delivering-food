@@ -33,7 +33,18 @@ const router = createRouter({
       path: "/chef",
       name: "Chef",
       component: () => import("../views/Chef.vue"),
-    }
+    },
+    {
+      path: "/chef/:slug",
+      name: "ChefDetail",
+      component: () => import("../views/ChefDetail.vue"),
+    },
+    {
+      path: "/about",
+      name: "About",
+      component: () => import("../views/About.vue"),
+    },
+
   ],
 });
 
