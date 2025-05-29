@@ -212,8 +212,69 @@
               class="w-full bg-orange-500 border-none mt-3"
               @click="login"
             />
+            <Button
+              label="Register"
+              class="w-full bg-transparent border-orange-500 text-orange-500 mt-2"
+              @click="openRegisterDialog"
+            />
           </div>
         </Dialog>
+
+        <!-- Dialog register -->
+        <Dialog
+          header="Register"
+          v-model:visible="showRegisterDialog"
+          modal
+          closable
+          style="width: 350px"
+          :dismissable-mask="true"
+        >
+          <div class="register-dialog-content">
+            <InputText
+              v-model="registerName"
+              placeholder="UserName"
+              class="p-inputtext-sm w-full mb-3"
+              type="text"
+              autocomplete="username"
+            />
+            <InputText
+              v-model="registerEmail"
+              placeholder="Email"
+              class="p-inputtext-sm w-full mb-3"
+              type="email"
+              autocomplete="email"
+            />
+            <InputText
+              v-model="phone"
+              placeholder="Phone Number"
+              type="tel"
+              class="p-inputtext-sm w-full mb-3"
+              autocomplete="phone"
+            />
+            <InputText
+              v-model="registerPassword"
+              placeholder="Password"
+              type="password"
+              class="p-inputtext-sm w-full mb-1"
+              autocomplete="new-password"
+              @keyup.enter="register"
+            />
+
+            <small
+              v-if="registerError"
+              style="color: red; margin-bottom: 10px; display: block"
+            >
+              {{ registerError }}
+            </small>
+
+            <Button
+              label="Register"
+              class="w-full bg-orange-500 border-none mt-3"
+              @click="register"
+            />
+          </div>
+        </Dialog>
+
         <!-- Cart Dialog -->
         <Dialog
           v-model:visible="showCartDialog"
@@ -390,6 +451,11 @@ export default {
       recipientPhone: "",
       recipientAddress: "",
       checkoutError: "",
+      showRegisterDialog: false,
+      registerName: "",
+      registerEmail: "",
+      registerPassword: "",
+      registerError: "",
     };
   },
   methods: {
@@ -419,7 +485,8 @@ export default {
           await this.cartStore.setUser(
             res.data.user.id,
             res.data.user.name,
-            res.data.token
+            res.data.token,
+            res.data.user.phone // Lưu phone từ API
           );
           localStorage.setItem("name", res.data.user.name);
           this.loginPassword = "";
@@ -557,10 +624,59 @@ export default {
     },
     openCheckoutDialog() {
       this.showCheckoutDialog = true;
-      this.recipientName = "";
-      this.recipientPhone = "";
-      this.recipientAddress = "";
+      if (this.cartStore.isLoggedIn) {
+        this.recipientName = this.cartStore.userName; // Điền tên người dùng
+        this.recipientPhone = this.cartStore.userPhone || ""; // Điền số điện thoại nếu có
+        console.log(this.cartStore);
+      } else {
+        this.recipientName = "";
+        this.recipientPhone = "";
+      }
+      this.recipientAddress = ""; // Luôn để trống
       this.checkoutError = "";
+    },
+    openRegisterDialog() {
+      this.showLoginDialog = false; // Đóng dialog login
+      this.showRegisterDialog = true; // Mở dialog register
+      this.registerName = "";
+      this.registerEmail = "";
+      this.registerPassword = "";
+      this.registerError = "";
+    },
+    async register() {
+      if (!this.registerName || !this.registerEmail || !this.registerPassword) {
+        this.registerError = "Please fill in all fields";
+        return;
+      }
+      try {
+        const res = await axios.post("http://localhost:5734/api/user/create", {
+          name: this.registerName,
+          email: this.registerEmail,
+          password: this.registerPassword,
+          phone: this.phone,
+        });
+        if (res.data.success) {
+          this.showRegisterDialog = false; // Đóng dialog register
+          this.registerError = "";
+          this.$toast.add({
+            severity: "success",
+            summary: "Success",
+            detail: "Registration successful! Please login.",
+            life: 3000,
+          });
+          this.showLoginDialog = true; // Mở lại dialog login
+        }
+      } catch (error) {
+        this.registerError =
+          error.response?.data?.message || "Registration failed";
+        this.$toast.add({
+          severity: "error",
+          summary: "Error",
+          detail: this.registerError,
+          life: 3000,
+        });
+        console.error("Register error:", error.response?.data || error.message);
+      }
     },
     handleScroll() {
       console.log("Scroll event triggered, scrollY:", window.scrollY); // Gỡ lỗi
@@ -746,29 +862,56 @@ export default {
   color: white !important;
 }
 
-.login-dialog-content .p-inputtext-sm {
+.login-dialog-content .p-inputtext-sm,
+.register-dialog-content .p-inputtext-sm {
   font-size: 0.9rem;
   padding: 8px 10px;
 }
 
-.login-dialog-content .p-inputtext-sm:hover {
+.login-dialog-content .p-inputtext-sm:hover,
+.register-dialog-content .p-inputtext-sm:hover {
   border: 1px solid #f9b233;
 }
 
-.login-dialog-content .p-inputtext-sm:focus {
+.login-dialog-content .p-inputtext-sm:focus,
+.register-dialog-content .p-inputtext-sm:focus {
   border: 1px solid #f9b233;
 }
 
-.login-dialog-content .w-full {
+.login-dialog-content .w-full,
+.register-dialog-content .w-full {
   width: 100%;
 }
 
-.login-dialog-content .mb-3 {
+.login-dialog-content .mb-3,
+.register-dialog-content .mb-3 {
   margin-bottom: 0.75rem;
 }
 
-.login-dialog-content .mb-4 {
-  margin-bottom: 1rem;
+.login-dialog-content .mb-1,
+.register-dialog-content .mb-1 {
+  margin-bottom: 0.25rem;
+}
+
+.checkout-dialog-content .p-inputtext-sm {
+  font-size: 0.9rem;
+  padding: 8px 10px;
+}
+
+.checkout-dialog-content .p-inputtext-sm:hover {
+  border: 1px solid #f9b233;
+}
+
+.checkout-dialog-content .p-inputtext-sm:focus {
+  border: 1px solid #f9b233;
+}
+
+.checkout-dialog-content .w-full {
+  width: 100%;
+}
+
+.checkout-dialog-content .mb-3 {
+  margin-bottom: 0.75rem;
 }
 
 .menu-grid {

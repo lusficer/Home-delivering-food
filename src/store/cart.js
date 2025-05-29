@@ -6,20 +6,15 @@ export const useCartStore = defineStore("cart", {
     cartItems: [],
     isLoggedIn: false,
     userId: null,
+    userPhone: "", // Thêm trường phone
     userName: "",
   }),
   actions: {
     async addToCart(item, quantity = 1) {
       if (!this.isLoggedIn) {
-        console.log("User not logged in, cannot add to cart");
         return false;
       }
       try {
-        console.log("Adding to cart:", {
-          userId: this.userId,
-          productId: item.id || item.product_id,
-          quantity,
-        });
         const response = await axios.post(
           "http://localhost:5734/api/cart",
           {
@@ -34,11 +29,9 @@ export const useCartStore = defineStore("cart", {
           }
         );
         if (response.data.success) {
-          console.log("Item added successfully, refreshing cart...");
           await this.fetchCart();
           return true;
         }
-        console.log("Failed to add item:", response.data);
         return false;
       } catch (error) {
         console.error(
@@ -50,7 +43,6 @@ export const useCartStore = defineStore("cart", {
     },
     async removeItem(productId) {
       try {
-        console.log("Removing item:", productId);
         const response = await axios.delete(
           `http://localhost:5734/api/cart/${productId}`,
           {
@@ -61,11 +53,9 @@ export const useCartStore = defineStore("cart", {
           }
         );
         if (response.data.success) {
-          console.log("Item removed successfully, refreshing cart...");
           await this.fetchCart();
           return true;
         }
-        console.log("Failed to remove item:", response.data);
         return false;
       } catch (error) {
         console.error(
@@ -77,14 +67,11 @@ export const useCartStore = defineStore("cart", {
     },
     async fetchCart() {
       if (!this.isLoggedIn) {
-        console.log("User not logged in, skipping fetchCart");
         return;
       }
       try {
-        console.log("Fetching cart for user:", this.userId);
         const token = localStorage.getItem("token");
         if (!token) {
-          console.log("No token found during fetchCart, cannot fetch cart");
           this.cartItems = [];
           return;
         }
@@ -92,7 +79,6 @@ export const useCartStore = defineStore("cart", {
           headers: { Authorization: `Bearer ${token}` },
         });
         this.cartItems = response.data.items;
-        console.log("Cart updated:", this.cartItems);
       } catch (error) {
         console.error(
           "Error fetching cart:",
@@ -101,42 +87,23 @@ export const useCartStore = defineStore("cart", {
         this.cartItems = [];
       }
     },
-    async setUser(userId, userName, token) {
-      console.log("setUser called with:", { userId, userName, token });
+    async setUser(userId, userName, token, phone = "") {
       this.isLoggedIn = true;
       this.userId = userId;
       this.userName = userName;
+      this.userPhone = phone; // Lưu phone
       localStorage.setItem("token", token);
       await this.fetchCart();
-      console.log("State after setUser:", this.$state);
     },
     logout() {
-      console.log("Logging out user - State before logout:", this.$state);
-      console.trace("Logout called from:");
       this.isLoggedIn = false;
       this.userId = null;
       this.userName = "";
+      this.userPhone = ""; // Reset phone
       this.cartItems = [];
       localStorage.removeItem("token");
       localStorage.removeItem("name");
       localStorage.removeItem("userId");
-      console.log("State after logout:", this.$state);
     },
-  },
-  subscribe: (mutation, state) => {
-    if (mutation.type === "patch object") {
-      console.log(
-        "Pinia state mutation:",
-        mutation.payload,
-        "New state:",
-        state
-      );
-      if ("userId" in mutation.payload) {
-        console.log("userId changed to:", state.userId);
-        if (state.userId === null) {
-          console.trace("userId set to null from:");
-        }
-      }
-    }
   },
 });

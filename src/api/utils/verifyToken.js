@@ -28,7 +28,7 @@ const verifyTokenAndAuthentication = (req, res, next) => {
 
 const verifyTokenAndAdmin = (req, res, next) => {
   verifyToken(req, res, () => {
-    if (req.user.isAdmin) {
+    if (req.user.role == "admin") {
       next();
     } else {
       return res
