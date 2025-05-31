@@ -176,102 +176,256 @@
 
         <!-- Dialog login -->
         <Dialog
-          header="Login"
+          header="NoBlast"
           v-model:visible="showLoginDialog"
           modal
-          closable
-          style="width: 350px"
-          :dismissable-mask="true"
+          :closable="false"
+          :dismissableMask="true"
+          style="width: 800px; border-radius: 15px"
+          class="custom-login-dialog"
         >
+          <template #header>
+            <div class="dialog-header">
+              <img
+                src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b37dca20c9b0c68f52979d_nvblast.svg"
+                style="width: 250px"
+                alt="NoBlast Logo"
+              />
+              <h4 class="mb-0 text-white">We are The NvBlast</h4>
+              <div
+                class="gradient-left"
+                style="
+                  background: linear-gradient(
+                    to right,
+                    #ee7724,
+                    #d8363a,
+                    #dd3675,
+                    #b44593
+                  );
+                  height: 100%;
+                  width: 50%;
+                  position: absolute;
+                  left: 0;
+                  top: 0;
+                  z-index: -1;
+                "
+              ></div>
+            </div>
+          </template>
           <div class="login-dialog-content">
-            <InputText
-              v-model="userName"
-              placeholder="UserName"
-              class="p-inputtext-sm w-full mb-3"
-              type="text"
-              autocomplete="username"
-            />
-            <InputText
-              v-model="loginPassword"
-              placeholder="Password"
-              type="password"
-              class="p-inputtext-sm w-full mb-1"
-              autocomplete="current-password"
-              @keyup.enter="login"
-            />
+            <Card class="login-card w-full">
+              <template #content>
+                <p class="text-center mb-4">Please login to your account</p>
 
-            <small
-              v-if="loginError"
-              style="color: red; margin-bottom: 10px; display: block"
+                <FloatLabel class="form-outline mb-4">
+                  <InputText
+                    v-model="userName"
+                    class="p-inputtext-sm w-full"
+                    type="text"
+                    autocomplete="username"
+                    id="form2Example11"
+                    @focus="onFocus('form2Example11')"
+                    @blur="onBlur('form2Example11')"
+                  />
+                  <label
+                    class="form-label"
+                    :class="{ active: userName }"
+                    for="form2Example11"
+                    >Username or email address</label
+                  >
+                </FloatLabel>
+
+                <div class="form-outline mb-4">
+                  <InputText
+                    v-model="loginPassword"
+                    class="p-inputtext-sm w-full"
+                    type="password"
+                    autocomplete="current-password"
+                    id="form2Example22"
+                    @focus="onFocus('form2Example22')"
+                    @blur="onBlur('form2Example22')"
+                    @keyup.enter="login"
+                  />
+                  <label
+                    class="form-label"
+                    :class="{ active: loginPassword }"
+                    for="form2Example22"
+                    >Password</label
+                  >
+                </div>
+
+                <div v-if="loginError" class="text-danger mb-3 text-center">
+                  <small>{{ loginError }}</small>
+                </div>
+
+                <div class="text-center pt-1 mb-5 pb-1">
+                  <Button
+                    label="Login"
+                    class="gradient-custom-2 w-full mb-3"
+                    @click="login"
+                  />
+                  <a class="text-muted" href="#!">Forgot password?</a>
+                </div>
+
+                <div
+                  class="d-flex align-items-center justify-content-center pb-4"
+                >
+                  <p class="mb-0 me-2">Don't have an account?</p>
+                  <Button
+                    label="Create new"
+                    class="p-button-outlined p-button-success bg-orange-400 text-50"
+                    @click="openRegisterDialog"
+                  />
+                </div>
+              </template>
+            </Card>
+            <c
+              class="text-center flex flex-column justify-content-center w-full gradient-custom-2 p-3"
             >
-              {{ loginError }}
-            </small>
-
-            <Button
-              label="Login"
-              class="w-full bg-orange-500 border-none mt-3"
-              @click="login"
-            />
-            <Button
-              label="Register"
-              class="w-full bg-transparent border-orange-500 text-orange-500 mt-2"
-              @click="openRegisterDialog"
-            />
+              <p class="text-white small mb-0">
+                We are more than just a restaurant, offering a delightful fusion
+                of culinary artistry and warm hospitality. Nestled in the heart
+                of the city, our establishment brings you a unique dining
+                experience with a menu inspired by global flavors and local
+                traditions. From savory dishes crafted with the freshest
+                ingredients to an ambiance that feels like home, we strive to
+                create unforgettable moments for every guest. Whether you're
+                here for a casual meal or a special celebration, our passionate
+                team is dedicated to serving you with excellence and a smile.
+              </p>
+            </c>
           </div>
         </Dialog>
 
         <!-- Dialog register -->
         <Dialog
-          header="Register"
+          header="NoBlast"
           v-model:visible="showRegisterDialog"
           modal
-          closable
-          style="width: 350px"
-          :dismissable-mask="true"
+          :closable="false"
+          :dismissableMask="true"
+          style="width: 800px; border-radius: 15px"
+          class="custom-login-dialog"
         >
-          <div class="register-dialog-content">
-            <InputText
-              v-model="registerName"
-              placeholder="UserName"
-              class="p-inputtext-sm w-full mb-3"
-              type="text"
-              autocomplete="username"
-            />
-            <InputText
-              v-model="registerEmail"
-              placeholder="Email"
-              class="p-inputtext-sm w-full mb-3"
-              type="email"
-              autocomplete="email"
-            />
-            <InputText
-              v-model="phone"
-              placeholder="Phone Number"
-              type="tel"
-              class="p-inputtext-sm w-full mb-3"
-              autocomplete="phone"
-            />
-            <InputText
-              v-model="registerPassword"
-              placeholder="Password"
-              type="password"
-              class="p-inputtext-sm w-full mb-1"
-              autocomplete="new-password"
-              @keyup.enter="register"
-            />
+          <template #header>
+            <div class="dialog-header">
+              <img
+                src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65b37dca20c9b0c68f52979d_nvblast.svg"
+                style="width: 150px"
+                alt="NoBlast Logo"
+              />
+              <h4 class="mb-0 text-white">We are The NvBlast</h4>
+              <div
+                class="gradient-left"
+                style="
+                  background: linear-gradient(
+                    to right,
+                    #ee7724,
+                    #d8363a,
+                    #dd3675,
+                    #b44593
+                  );
+                  height: 100%;
+                  width: 50%;
+                  position: absolute;
+                  left: 0;
+                  top: 0;
+                  z-index: -1;
+                "
+              ></div>
+            </div>
+          </template>
+          <div class="login-dialog-content">
+            <Card class="login-card w-full">
+              <template #content>
+                <p class="text-center mb-4">Please register a new account</p>
 
-            <small
-              v-if="registerError"
-              style="color: red; margin-bottom: 10px; display: block"
-            >
-              {{ registerError }}
-            </small>
+                <FloatLabel class="form-outline mb-4">
+                  <InputText
+                    v-model="registerName"
+                    class="p-inputtext-sm w-full"
+                    type="text"
+                    autocomplete="username"
+                    id="form2Example31"
+                    @focus="onFocus('form2Example31')"
+                    @blur="onBlur('form2Example31')"
+                  />
+                  <label
+                    class="form-label"
+                    :class="{ active: registerName }"
+                    for="form2Example31"
+                    >Username</label
+                  >
+                </FloatLabel>
 
-            <Button
-              label="Register"
-              class="w-full bg-orange-500 border-none mt-3"
-              @click="register"
-            />
+                <FloatLabel class="form-outline mb-4">
+                  <InputText
+                    v-model="registerEmail"
+                    class="p-inputtext-sm w-full"
+                    type="email"
+                    autocomplete="email"
+                    id="form2Example32"
+                    @focus="onFocus('form2Example32')"
+                    @blur="onBlur('form2Example32')"
+                  />
+                  <label
+                    class="form-label"
+                    :class="{ active: registerEmail }"
+                    for="form2Example32"
+                    >Email</label
+                  >
+                </FloatLabel>
+
+                <FloatLabel class="form-outline mb-4">
+                  <InputText
+                    v-model="phone"
+                    class="p-inputtext-sm w-full"
+                    type="tel"
+                    autocomplete="phone"
+                    id="form2Example33"
+                    @focus="onFocus('form2Example33')"
+                    @blur="onBlur('form2Example33')"
+                  />
+                  <label
+                    class="form-label"
+                    :class="{ active: phone }"
+                    for="form2Example33"
+                    >Phone Number</label
+                  >
+                </FloatLabel>
+
+                <FloatLabel class="form-outline mb-4">
+                  <InputText
+                    v-model="registerPassword"
+                    class="p-inputtext-sm w-full"
+                    type="password"
+                    autocomplete="new-password"
+                    id="form2Example34"
+                    @focus="onFocus('form2Example34')"
+                    @blur="onBlur('form2Example34')"
+                    @keyup.enter="register"
+                  />
+                  <label
+                    class="form-label"
+                    :class="{ active: registerPassword }"
+                    for="form2Example34"
+                    >Password</label
+                  >
+                </FloatLabel>
+
+                <div v-if="registerError" class="text-danger mb-3 text-center">
+                  <small>{{ registerError }}</small>
+                </div>
+
+                <div class="text-center pt-1 mb-5 pb-1">
+                  <Button
+                    label="Register"
+                    class="gradient-custom-2 w-full mb-3"
+                    @click="register"
+                  />
+                </div>
+              </template>
+            </Card>
           </div>
         </Dialog>
 
@@ -407,6 +561,8 @@ import Dialog from "primevue/dialog";
 import Button from "primevue/button";
 import InputText from "primevue/inputtext";
 import Menu from "primevue/menu";
+import { FloatLabel } from "primevue";
+import Card from "primevue/card";
 import { useCartStore } from "@/store/cart";
 import { RouterLink } from "vue-router";
 export default {
@@ -421,7 +577,9 @@ export default {
     InputText,
     Dialog,
     Menu,
+    Card,
     RouterLink,
+    FloatLabel,
   },
   data() {
     return {
@@ -456,6 +614,7 @@ export default {
       registerEmail: "",
       registerPassword: "",
       registerError: "",
+      phone: "",
     };
   },
   methods: {
@@ -486,7 +645,7 @@ export default {
             res.data.user.id,
             res.data.user.name,
             res.data.token,
-            res.data.user.phone // Lưu phone từ API
+            res.data.user.phone
           );
           localStorage.setItem("name", res.data.user.name);
           this.loginPassword = "";
@@ -625,19 +784,19 @@ export default {
     openCheckoutDialog() {
       this.showCheckoutDialog = true;
       if (this.cartStore.isLoggedIn) {
-        this.recipientName = this.cartStore.userName; // Điền tên người dùng
-        this.recipientPhone = this.cartStore.userPhone || ""; // Điền số điện thoại nếu có
+        this.recipientName = this.cartStore.userName;
+        this.recipientPhone = this.cartStore.userPhone || "";
         console.log(this.cartStore);
       } else {
         this.recipientName = "";
         this.recipientPhone = "";
       }
-      this.recipientAddress = ""; // Luôn để trống
+      this.recipientAddress = "";
       this.checkoutError = "";
     },
     openRegisterDialog() {
-      this.showLoginDialog = false; // Đóng dialog login
-      this.showRegisterDialog = true; // Mở dialog register
+      this.showLoginDialog = false;
+      this.showRegisterDialog = true;
       this.registerName = "";
       this.registerEmail = "";
       this.registerPassword = "";
@@ -655,20 +814,16 @@ export default {
           password: this.registerPassword,
           phone: this.phone,
         });
-        if (res.data.success) {
-          this.showRegisterDialog = false; // Đóng dialog register
-          this.registerError = "";
-          this.$toast.add({
-            severity: "success",
-            summary: "Success",
-            detail: "Registration successful! Please login.",
-            life: 3000,
-          });
-          this.showLoginDialog = true; // Mở lại dialog login
-        }
+        this.showRegisterDialog = false;
+        this.registerError = "";
+        this.$toast.add({
+          severity: "success",
+          summary: "Success",
+          detail: "Registration successful! Please login.",
+          life: 3000,
+        });
+        this.showLoginDialog = true;
       } catch (error) {
-        this.registerError =
-          error.response?.data?.message || "Registration failed";
         this.$toast.add({
           severity: "error",
           summary: "Error",
@@ -676,12 +831,27 @@ export default {
           life: 3000,
         });
         console.error("Register error:", error.response?.data || error.message);
+        this.showRegisterDialog = false;
       }
     },
     handleScroll() {
-      console.log("Scroll event triggered, scrollY:", window.scrollY); // Gỡ lỗi
+      console.log("Scroll event triggered, scrollY:", window.scrollY);
       this.isScrolled = window.scrollY > 0;
-      console.log("isScrolled updated to:", this.isScrolled); // Gỡ lỗi
+      console.log("isScrolled updated to:", this.isScrolled);
+    },
+    onFocus(id) {
+      const input = document.getElementById(id);
+      const label = input.nextElementSibling;
+      if (!input.value) {
+        label.classList.add("active");
+      }
+    },
+    onBlur(id) {
+      const input = document.getElementById(id);
+      const label = input.nextElementSibling;
+      if (!input.value) {
+        label.classList.remove("active");
+      }
     },
   },
   mounted() {
@@ -689,19 +859,19 @@ export default {
     if (name) {
       this.userName = name;
     }
-    console.log("Adding scroll event listener"); // Gỡ lỗi
+    console.log("Adding scroll event listener");
     window.addEventListener("scroll", this.handleScroll);
-    // Kiểm tra ban đầu
     this.handleScroll();
   },
   beforeUnmount() {
-    console.log("Removing scroll event listener"); // Gỡ lỗi
+    console.log("Removing scroll event listener");
     window.removeEventListener("scroll", this.handleScroll);
   },
 };
 </script>
 
 <style>
+/* Các style hiện có */
 .p-dialog {
   max-height: 100% !important;
   margin: 0 !important;
@@ -862,56 +1032,44 @@ export default {
   color: white !important;
 }
 
+.p-dialog-header {
+  padding: 0 !important;
+}
+
 .login-dialog-content .p-inputtext-sm,
-.register-dialog-content .p-inputtext-sm {
+.register-dialog-content .p-inputtext-sm,
+.checkout-dialog-content .p-inputtext-sm {
   font-size: 0.9rem;
   padding: 8px 10px;
 }
 
 .login-dialog-content .p-inputtext-sm:hover,
-.register-dialog-content .p-inputtext-sm:hover {
-  border: 1px solid #f9b233;
+.register-dialog-content .p-inputtext-sm:hover,
+.checkout-dialog-content .p-inputtext-sm:hover {
+  border: 1px solid #f9b233 !important;
 }
 
 .login-dialog-content .p-inputtext-sm:focus,
-.register-dialog-content .p-inputtext-sm:focus {
-  border: 1px solid #f9b233;
+.register-dialog-content .p-inputtext-sm:focus,
+.checkout-dialog-content .p-inputtext-sm:focus {
+  border: 1px solid #f9b233 !important;
 }
 
 .login-dialog-content .w-full,
-.register-dialog-content .w-full {
+.register-dialog-content .w-full,
+.checkout-dialog-content .w-full {
   width: 100%;
 }
 
 .login-dialog-content .mb-3,
-.register-dialog-content .mb-3 {
+.register-dialog-content .mb-3,
+.checkout-dialog-content .mb-3 {
   margin-bottom: 0.75rem;
 }
 
 .login-dialog-content .mb-1,
 .register-dialog-content .mb-1 {
   margin-bottom: 0.25rem;
-}
-
-.checkout-dialog-content .p-inputtext-sm {
-  font-size: 0.9rem;
-  padding: 8px 10px;
-}
-
-.checkout-dialog-content .p-inputtext-sm:hover {
-  border: 1px solid #f9b233;
-}
-
-.checkout-dialog-content .p-inputtext-sm:focus {
-  border: 1px solid #f9b233;
-}
-
-.checkout-dialog-content .w-full {
-  width: 100%;
-}
-
-.checkout-dialog-content .mb-3 {
-  margin-bottom: 0.75rem;
 }
 
 .menu-grid {
@@ -1019,5 +1177,151 @@ export default {
 
 .Image-link:hover {
   background-color: unset;
+}
+
+/* Style cho dialog login */
+.custom-login-dialog .p-dialog-content {
+  padding: 0 !important;
+}
+
+.login-dialog-content {
+  display: flex;
+  flex-direction: row;
+  background-color: #f8f9fa;
+  border-radius: 0 0 15px 15px;
+  overflow: hidden;
+}
+
+.dialog-header {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+  background-color: #000000;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.dialog-header img {
+  margin-bottom: 10px;
+}
+
+.dialog-header h4 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #000;
+}
+.p-dialog-header {
+  padding: 0;
+}
+.dialog-header p {
+  margin: 0;
+  font-size: 1rem;
+  color: #6c757d;
+}
+
+.gradient-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 50%;
+  z-index: -1;
+}
+
+.login-card {
+  margin: 0;
+  background-color: #000 !important;
+  color: #fff !important;
+  border-radius: 0 !important;
+  box-shadow: none;
+}
+
+.login-card .p-card-body {
+  padding: 2rem !important;
+}
+
+.gradient-custom-2 {
+  background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+  color: white;
+  padding: 1rem;
+}
+
+.form-outline {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.form-outline .p-inputtext {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: #000;
+  color: #fff;
+}
+
+.form-outline .p-inputtext:focus {
+  border-color: #007bff;
+  box-shadow: none;
+  outline: none;
+}
+
+.form-outline .form-label {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  padding: 0 5px;
+  background-color: #000;
+  color: #adb5bd;
+  font-size: 1rem;
+  transition: all 0.2s;
+  pointer-events: none;
+}
+
+.text-muted {
+  color: #6c757d !important;
+  text-decoration: none;
+}
+
+.text-muted:hover {
+  text-decoration: underline;
+}
+
+.text-danger {
+  color: #dc3545 !important;
+}
+
+.active {
+  top: -10px !important;
+  left: 10px !important;
+  font-size: 0.75rem !important;
+  color: white !important;
+}
+
+.p-button.gradient-custom-2 {
+  background: linear-gradient(
+    to right,
+    #ee7724,
+    #d8363a,
+    #dd3675,
+    #b44593
+  ) !important;
+  border: none !important;
+  color: white !important;
+}
+
+.p-button-outlined.p-button-success {
+  color: #000 !important;
+  border-color: #000 !important;
+}
+
+.p-button-outlined.p-button-success:hover {
+  background-color: #f9b233 !important;
+  color: white !important;
 }
 </style>
