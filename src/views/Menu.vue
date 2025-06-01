@@ -89,7 +89,7 @@
                 <h3 class="name text-2xl font-bold text-white">
                   {{ item.name }}
                 </h3>
-                <p class="desc text-sm text-gray-300">{{ item.desc }}</p>
+                <p class="desc text-sm text-gray-300">{{ item.desciption }}</p>
                 <p class="price text-yellow-400 text-xl mt-2 font-semibold">
                   {{ item.price }}
                 </p>
@@ -97,7 +97,18 @@
             </div>
           </div>
 
-          <Dialog v-model:visible="showDialog" modal header="Food detail">
+          <Dialog
+            v-model:visible="showDialog"
+            modal
+            :dismissableMask="true"
+            :closable="false"
+            class="p-3"
+          >
+            <template #header>
+              <div class="flex relative w-full pb-2 justify-content-center">
+                <h1 class="">Our's {{ selectedItem.type }} Detail</h1>
+              </div>
+            </template>
             <div class="text-center">
               <Image height="500" width="100%" :src="selectedItem.image" />
               <h3>{{ selectedItem.name }}</h3>

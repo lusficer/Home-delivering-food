@@ -70,7 +70,7 @@ const sendOrderConfirmationEmail = async (toEmail, orderDetails) => {
           }
           .header {
             text-align: center;
-            background-color: #ff9800;
+            background-color: #F9B233;
             color: white;
             padding: 10px;
             border-radius: 10px 10px 0 0;
@@ -84,7 +84,7 @@ const sendOrderConfirmationEmail = async (toEmail, orderDetails) => {
             margin-top: 20px;
           }
           .order-table th {
-            background-color: #ff9800;
+            background-color: #F9B233;
             color: white;
             padding: 10px;
             text-align: left;
@@ -125,7 +125,7 @@ const sendOrderConfirmationEmail = async (toEmail, orderDetails) => {
             <p><strong>Recipient Name:</strong> ${recipient_name}</p>
             <p><strong>Phone:</strong> ${recipient_phone}</p>
             <p><strong>Address:</strong> ${recipient_address}</p>
-            <p>We will process your order soon. If you have any questions, feel free to contact us at <a href="mailto:nvblastsupport@gmail.com">support@yourrestaurant.com</a>.</p>
+            <p>We will process your order soon. If you have any questions, feel free to contact us at <a href="mailto:nvblastsupport@gmail.com">support@nvblastsupport.com</a>.</p>
           </div>
           <div class="footer">
             <p>© 2025 Your Restaurant. All rights reserved.</p>

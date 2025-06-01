@@ -16,7 +16,10 @@ const verifyToken = (req, res, next) => {
 
 const verifyTokenAndAuthentication = (req, res, next) => {
   verifyToken(req, res, () => {
-    if (parseInt(req.user.id) === parseInt(req.params.id) || req.user.isAdmin) {
+    if (
+      parseInt(req.user.id) === parseInt(req.params.id) ||
+      req.user.role === "admin"
+    ) {
       next();
     } else {
       return res
@@ -37,9 +40,22 @@ const verifyTokenAndAdmin = (req, res, next) => {
     }
   });
 };
-
+const verifyTokenAndRestaurantManager = (req, res, next) => {
+  verifyToken(req, res, () => {
+    if (req.user.role === "restaurantManager") {
+      next();
+    } else {
+      return res
+        .status(403)
+        .json(
+          "You are not allowed to do that! Only restaurant managers can access this."
+        );
+    }
+  });
+};
 module.exports = {
   verifyToken,
   verifyTokenAndAuthentication,
   verifyTokenAndAdmin,
+  verifyTokenAndRestaurantManager,
 };

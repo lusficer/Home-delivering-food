@@ -163,7 +163,9 @@
             farm-to-table philosophy ensures that every dish is not just
             delicious but responsibly crafted.
           </p>
-          <Button label="View details" class="view-details-btn" />
+          ><RouterLink to="/chief/chef-miguel-torres">
+            <Button label="View details" class="view-details-btn"> </Button>
+          </RouterLink>
         </div>
         <div class="masterminds-image" style="height: 45rem">
           <Image

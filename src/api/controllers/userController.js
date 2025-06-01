@@ -32,6 +32,21 @@ const registerUser = async (req, res) => {
       return res.status(400).json({ error: "Username already exists" });
     }
 
+    const [existingManagers] = await pool.query(
+      "SELECT id, name, email FROM users WHERE role = 'restaurantManager'"
+    );
+
+    if (role === "restaurantManager" && existingManagers.length > 0) {
+      return res.status(400).json({
+        error:
+          "Only one restaurant manager is allowed. Current restaurant manager: " +
+          existingManagers[0].name +
+          " (" +
+          existingManagers[0].email +
+          ")",
+      });
+    }
+
     // Mã hóa mật khẩu
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -89,12 +104,31 @@ const getUserInfo = async (req, res) => {
 
 // ✏️ Cập nhật thông tin user
 const updateUser = async (req, res) => {
-  const { name, email, phone, password } = req.body;
+  const { email, phone, password, role } = req.body;
+  const userId = req.params.id;
   try {
+    if (role === "restaurantManager") {
+      const [existingManagers] = await pool.query(
+        "SELECT id, name, email FROM users WHERE role = 'restaurantManager' AND id != ?",
+        [userId]
+      );
+
+      if (existingManagers.length > 0) {
+        return res.status(400).json({
+          error:
+            "Only one restaurant manager is allowed. Current restaurant manager: " +
+            existingManagers[0].name +
+            " (" +
+            existingManagers[0].email +
+            ")",
+        });
+      }
+    }
+
     const hashedPassword = password ? await bcrypt.hash(password, 10) : null;
     await pool.query(
-      "UPDATE users SET name = ?, email = ?, phone = ?, password = COALESCE(?, password) WHERE id = ?",
-      [name, email, phone, hashedPassword, req.params.id]
+      "UPDATE users SET email = ?, phone = ?, role = ?, password = COALESCE(?, password) WHERE id = ?",
+      [email, phone, role, hashedPassword, req.params.id]
     );
     res.status(200).json({ message: "User updated" });
   } catch (err) {

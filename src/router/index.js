@@ -44,6 +44,16 @@ const router = createRouter({
       name: "About",
       component: () => import("../views/About.vue"),
     },
+    {
+      path: "/admin",
+      name: "Admin",
+      component: () => import("../views/AdminManagement.vue"),
+    },
+    {
+      path: "/manager",
+      name: "Restaurant Manager",
+      component: () => import("../views/ManagerPage.vue"),
+    },
   ],
 });
 

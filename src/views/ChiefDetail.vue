@@ -281,8 +281,7 @@ export default {
         name: "Chef Miguel Torres",
         jobTitle: "Rising Star Chef",
         slug: "chef-miguel-torres",
-        image:
-          "https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f5903/65b79476e8189471f5736049_chef-01.jpg",
+        image: "/Chef/chef5.jpg",
         description:
           "Miguel Torres is a rising culinary talent known for his innovative approach to traditional recipes. His dishes combine family traditions with modern techniques.",
         specialties: [

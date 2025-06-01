@@ -1,3 +1,4 @@
+// orderController.js
 const pool = require("../utils/db");
 const { sendOrderConfirmationEmail } = require("../utils/email");
 
@@ -15,7 +16,7 @@ const checkout = async (req, res) => {
 
   if (!user_id || !recipient_name || !recipient_phone || !recipient_address) {
     console.log("Missing required fields");
-    return res.status(400).send({ message: "Missing required fields" });
+    return res.status(400).json({ message: "Missing required fields" });
   }
 
   let connection;
@@ -98,23 +99,57 @@ const checkout = async (req, res) => {
     await connection.commit();
     console.log("Transaction committed");
 
-    res.send({ success: true });
+    res.status(200).json({ success: true, order_id });
   } catch (err) {
     console.error("Error:", err.message);
     if (connection) {
       await connection.rollback();
       connection.release();
     }
-    if (err.message === "Giỏ hàng trống") {
-      res.status(400).send({ message: err.message });
-    } else if (err.message === "User email not found") {
-      res.status(400).send({ message: err.message });
+    if (
+      err.message === "Giỏ hàng trống" ||
+      err.message === "User email not found"
+    ) {
+      res.status(400).json({ message: err.message });
     } else {
-      res.status(500).send({ message: "Checkout failed", error: err.message });
+      res.status(500).json({ message: "Checkout failed", error: err.message });
     }
+  } finally {
+    if (connection) connection.release();
+  }
+};
+
+// Lấy danh sách đơn hàng (cho restaurantManager)
+const getOrders = async (req, res) => {
+  try {
+    // Lấy user_id từ token
+    const userId = req.user.id;
+    const [orders] = await pool.query(
+      "SELECT o.id, o.total, o.created_at, o.recipient_name FROM orders o WHERE o.user_id = ?",
+      [userId]
+    );
+    res.status(200).json(orders);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+// Lấy số liệu thống kê đơn hàng (cho restaurantManager)
+const getOrderStats = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const [stats] = await pool.query(
+      "SELECT DATE(o.created_at) as date, COUNT(o.id) as order_count, SUM(o.total) as total_amount FROM orders o WHERE o.user_id = ? GROUP BY DATE(o.created_at)",
+      [userId]
+    );
+    res.status(200).json(stats);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
 };
 
 module.exports = {
   checkout,
+  getOrders,
+  getOrderStats,
 };
