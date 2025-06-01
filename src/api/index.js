@@ -16,6 +16,10 @@ app.use(express.json());
 app.use(cors(corsConfig));
 
 app.use("/api", routes); // <-- Gắn router vào prefix /api
+
+app.get("/", (req, res) => {
+  res.send("Hello");
+});
 // Khởi động server
 server.listen(process.env.PORT || 3000, () => {
   console.log(`Server is running on port ${process.env.PORT}`);

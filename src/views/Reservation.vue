@@ -1,7 +1,7 @@
 <template>
   <NavBar></NavBar>
   <div class="hero-section">
-    <Image src="../../public/reservation.jpg" class="hero-bg"> </Image>
+    <img src="../../public/reservation.jpg" class="hero-bg"> </img>
     <div class="overlay"></div>
     <div class="content-wrapper flex justify-content-center flex-wrap">
       <div class="hero-content">
