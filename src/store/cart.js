@@ -16,7 +16,7 @@ export const useCartStore = defineStore("cart", {
       }
       try {
         const response = await axios.post(
-          "http://localhost:5734/api/cart",
+          `${import.meta.env.VITE_API_URL}/api/cart`,
           {
             user_id: this.userId,
             product_id: item.id || item.product_id,
@@ -44,7 +44,7 @@ export const useCartStore = defineStore("cart", {
     async removeItem(productId) {
       try {
         const response = await axios.delete(
-          `http://localhost:5734/api/cart/${productId}`,
+          `${import.meta.env.VITE_API_URL}/api/cart/${productId}`,
           {
             data: { user_id: this.userId },
             headers: {
@@ -75,9 +75,12 @@ export const useCartStore = defineStore("cart", {
           this.cartItems = [];
           return;
         }
-        const response = await axios.get("http://localhost:5734/api/cart", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/cart`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
         this.cartItems = response.data.items;
       } catch (error) {
         console.error(

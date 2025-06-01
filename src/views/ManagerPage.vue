@@ -392,11 +392,14 @@ export default {
   methods: {
     async fetchProducts() {
       try {
-        const response = await axios.get("http://localhost:5734/api/products", {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        });
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/products`,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
         this.products = response.data;
       } catch (error) {
         this.$toast.add({
@@ -422,7 +425,7 @@ export default {
     async addProduct() {
       try {
         const response = await axios.post(
-          "http://localhost:5734/api/products",
+          `${import.meta.env.VITE_API_URL}api/products`,
           this.newProduct,
           {
             headers: {
@@ -459,7 +462,7 @@ export default {
     async updateProduct() {
       try {
         const response = await axios.put(
-          `http://localhost:5734/api/products/${this.editProduct.id}`,
+          `${import.meta.env.VITE_API_URL}/api/products/${this.editProduct.id}`,
           this.editProduct,
           {
             headers: {
@@ -495,7 +498,9 @@ export default {
     async confirmDeleteProduct() {
       try {
         const response = await axios.delete(
-          `http://localhost:5734/api/products/${this.productToDelete}`,
+          `${import.meta.env.VITE_API_URL}/api/products/${
+            this.productToDelete
+          }`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -526,11 +531,14 @@ export default {
     },
     async fetchOrders() {
       try {
-        const response = await axios.get("http://localhost:5734/api/orders", {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        });
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/orders`,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
         this.orders = response.data;
       } catch (error) {
         this.$toast.add({
@@ -544,7 +552,7 @@ export default {
     async fetchOrderStats() {
       try {
         const response = await axios.get(
-          "http://localhost:5734/api/orders/stats",
+          `${import.meta.env.VITE_API_URL}/api/orders/stats`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,

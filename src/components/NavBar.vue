@@ -1016,10 +1016,13 @@ export default {
         return;
       }
       try {
-        const res = await axios.post("http://localhost:5734/api/user/login", {
-          name: this.userName,
-          password: this.loginPassword,
-        });
+        const res = await axios.post(
+          `${import.meta.env.VITE_API_URL}/api/user/login`,
+          {
+            name: this.userName,
+            password: this.loginPassword,
+          }
+        );
         if (res.data && res.data.token && res.data.user) {
           await this.cartStore.setUser(
             res.data.user.id,
@@ -1071,7 +1074,7 @@ export default {
     async fetchUserProfile() {
       try {
         const response = await axios.get(
-          "http://localhost:5734/api/user/info",
+          `${import.meta.env.VITE_API_URL}/api/user/info`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -1103,7 +1106,7 @@ export default {
     async updateUserProfile() {
       try {
         const response = await axios.put(
-          `http://localhost:5734/api/user/${this.userProfile.id}`,
+          `${import.meta.env.VITE_API_URL}/api/user/${this.userProfile.id}`,
           {
             email: this.userProfile.email,
             phone: this.userProfile.phone,
@@ -1257,7 +1260,7 @@ export default {
         }
 
         const response = await axios.post(
-          "http://localhost:5734/api/checkout",
+          `${import.meta.env.VITE_API_URL}/api/checkout`,
           payload,
           {
             headers: {
@@ -1320,13 +1323,16 @@ export default {
         return;
       }
       try {
-        const res = await axios.post("http://localhost:5734/api/user/create", {
-          name: this.registerName,
-          email: this.registerEmail,
-          password: this.registerPassword,
-          phone: this.phone,
-          role: "user", // Default role
-        });
+        const res = await axios.post(
+          `${import.meta.env.VITE_API_URL}/api/user/create`,
+          {
+            name: this.registerName,
+            email: this.registerEmail,
+            password: this.registerPassword,
+            phone: this.phone,
+            role: "user", // Default role
+          }
+        );
         this.showRegisterDialog = false;
         this.registerError = "";
         this.$toast.add({

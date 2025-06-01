@@ -250,11 +250,14 @@ export default {
   methods: {
     async fetchUsers() {
       try {
-        const response = await axios.get("http://localhost:5734/api/user", {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        });
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/user`,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
         this.users = response.data;
       } catch (error) {
         this.$toast.add({
@@ -283,7 +286,7 @@ export default {
     async addUser() {
       try {
         const response = await axios.post(
-          "http://localhost:5734/api/user/create",
+          `${import.meta.env.VITE_API_URL}/api/user/create`,
           this.newUser,
           {
             headers: {
@@ -321,7 +324,7 @@ export default {
     async updateUser() {
       try {
         const response = await axios.put(
-          `http://localhost:5734/api/user/${this.editUser.id}`,
+          `${import.meta.env.VITE_API_URL}/api/user/${this.editUser.id}`,
           {
             name: this.editUser.name,
             email: this.editUser.email,
@@ -359,7 +362,7 @@ export default {
       if (confirm("Are you sure you want to delete this user?")) {
         try {
           const response = await axios.delete(
-            `http://localhost:5734/api/user/${id}`,
+            `${import.meta.env.VITE_API_URL}/api/user/${id}`,
             {
               headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,

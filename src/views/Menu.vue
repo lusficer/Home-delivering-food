@@ -450,7 +450,9 @@ export default {
   async mounted() {
     this.togglePlayPause();
     try {
-      const response = await axios.get("http://localhost:5734/api/products");
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/api/products`
+      );
       this.menu = response.data;
     } catch (error) {
       console.error("Error fetching menu:", error);
