@@ -88,7 +88,7 @@
           header="Edit User"
           v-model:visible="showEditUserDialog"
           modal
-          :closable="true"
+          :closable="false"
           :dismissableMask="true"
           style="width: 400px; border-radius: 15px"
           class="custom-dialog"
@@ -96,7 +96,7 @@
           <template #header>
             <h2 class="dialog-header gradient-custom-2">Edit User</h2>
           </template>
-          <div class="p-fluid">
+          <div class="p-fluid mt-4">
             <FloatLabel class="mb-4">
               <InputText
                 v-model="editUser.name"
@@ -172,12 +172,12 @@
             <div class="flex justify-center gap-3">
               <Button
                 label="Yes"
-                class="gradient-custom-2 w-1/2"
+                class="gradient-custom-2 w-6"
                 @click="confirmDeleteUser"
               />
               <Button
                 label="No"
-                class="p-button-outlined p-button-success bg-orange-400 w-1/2 text-50"
+                class="p-button-outlined p-button-success bg-orange-400 w-6 text-50"
                 @click="showDeleteUserDialog = false"
               />
             </div>
