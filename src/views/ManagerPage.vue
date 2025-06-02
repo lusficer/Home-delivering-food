@@ -337,7 +337,7 @@ export default {
       newProduct: {
         name: "",
         type: "",
-        desciption: "", // Sửa lỗi chính tả từ "desciption" thành "description"
+        desciption: "",
         price: "",
         image: "",
         link: "",
@@ -346,7 +346,7 @@ export default {
         id: "",
         name: "",
         type: "",
-        desciption: "", // Sửa lỗi chính tả từ "descrption" thành "description"
+        desciption: "",
         price: "",
         image: "",
         link: "",
@@ -425,7 +425,7 @@ export default {
     async addProduct() {
       try {
         const response = await axios.post(
-          `${import.meta.env.VITE_API_URL}api/products`,
+          `${import.meta.env.VITE_API_URL}/api/products`,
           this.newProduct,
           {
             headers: {

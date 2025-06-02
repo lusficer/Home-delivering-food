@@ -32,7 +32,7 @@ const createProduct = async (req, res) => {
 
 // Sửa sản phẩm (cho restaurantManager)
 const updateProduct = async (req, res) => {
-  const { name, type, description, price, image, link } = req.body;
+  const { name, type, desciption, price, image, link } = req.body;
   const productId = req.params.id;
   try {
     if (!name || !type || !price) {
@@ -41,11 +41,11 @@ const updateProduct = async (req, res) => {
         .json({ error: "Name, type, and price are required" });
     }
     const [result] = await pool.query(
-      "UPDATE products SET name = ?, type = ?, description = ?, price = ?, image = ?, link = ? WHERE id = ?",
+      "UPDATE products SET name = ?, type = ?, desciption = ?, price = ?, image = ?, link = ? WHERE id = ?",
       [
         name,
         type,
-        description || null,
+        desciption || null,
         price,
         image || null,
         link || null,
