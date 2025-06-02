@@ -4,10 +4,10 @@ const bcrypt = require("bcryptjs");
 
 // 🔐 Đăng ký
 const registerUser = async (req, res) => {
-  const { name, password, email, phone } = req.body;
+  const { name, password, email, phone, role } = req.body;
 
   // Kiểm tra các trường bắt buộc
-  if (!name || !password || !email || !phone) {
+  if (!name || !password || !email || !phone || !role) {
     return res.status(400).json({
       error: "All fields (name, password, email, phone) are required",
     });
@@ -52,8 +52,8 @@ const registerUser = async (req, res) => {
 
     // Tạo người dùng mới
     const [result] = await pool.query(
-      "INSERT INTO users (name, password, email, phone) VALUES (?, ?, ?, ?)",
-      [name, hashedPassword, email, phone]
+      "INSERT INTO users (name, password, email, phone, role) VALUES (?, ?, ?, ?, ?)",
+      [name, hashedPassword, email, phone, role]
     );
     res.status(201).json({ message: "User created", userId: result.insertId });
   } catch (err) {

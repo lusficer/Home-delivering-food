@@ -305,6 +305,10 @@ onMounted(() => {
   flex-direction: column;
 }
 
+.input-group h2{
+  color: white;
+}
+
 .input-group.full-width {
   flex: 100%;
 }
