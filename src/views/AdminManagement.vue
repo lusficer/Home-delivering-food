@@ -93,6 +93,9 @@
           style="width: 400px; border-radius: 15px"
           class="custom-dialog"
         >
+          <template #header>
+            <h2 class="dialog-header gradient-custom-2">Edit User</h2>
+          </template>
           <div class="p-fluid">
             <FloatLabel class="mb-4">
               <InputText
@@ -151,6 +154,36 @@
           </div>
         </Dialog>
 
+        <!-- Delete User Dialog -->
+        <Dialog
+          header="Confirm Delete"
+          v-model:visible="showDeleteUserDialog"
+          modal
+          :closable="false"
+          :dismissableMask="true"
+          style="width: 350px; border-radius: 15px"
+          class="custom-dialog"
+        >
+          <template #header>
+            <h2 class="dialog-header gradient-custom-2">Confirm Delete</h2>
+          </template>
+          <div class="p-fluid mt-5 text-center">
+            <p>Are you sure you want to delete this user?</p>
+            <div class="flex justify-center gap-3">
+              <Button
+                label="Yes"
+                class="gradient-custom-2 w-1/2"
+                @click="confirmDeleteUser"
+              />
+              <Button
+                label="No"
+                class="p-button-outlined p-button-success bg-orange-400 w-1/2 text-50"
+                @click="showDeleteUserDialog = false"
+              />
+            </div>
+          </div>
+        </Dialog>
+
         <!-- User Table -->
         <div class="text-right mb-3">
           <Button
@@ -183,7 +216,7 @@
               <Button
                 icon="pi pi-trash"
                 class="p-button-rounded p-button-text p-button-danger"
-                @click="deleteUser(slotProps.data.id)"
+                @click="openDeleteUserDialog(slotProps.data.id)"
               />
             </template>
           </Column>
@@ -222,6 +255,8 @@ export default {
       users: [],
       showAddUserDialog: false,
       showEditUserDialog: false,
+      showDeleteUserDialog: false, // Thêm biến để điều khiển dialog xác nhận xóa
+      userToDelete: null, // Lưu trữ ID của người dùng cần xóa
       newUser: {
         name: "",
         email: "",
@@ -358,34 +393,40 @@ export default {
         });
       }
     },
-    async deleteUser(id) {
-      if (confirm("Are you sure you want to delete this user?")) {
-        try {
-          const response = await axios.delete(
-            `${import.meta.env.VITE_API_URL}/api/user/${id}`,
-            {
-              headers: {
-                Authorization: `Bearer ${localStorage.getItem("token")}`,
-              },
-            }
-          );
-          if (response.data) {
-            this.$toast.add({
-              severity: "success",
-              summary: "Success",
-              detail: "User deleted successfully",
-              life: 3000,
-            });
-            this.fetchUsers();
+    openDeleteUserDialog(userId) {
+      this.userToDelete = userId;
+      this.showDeleteUserDialog = true;
+    },
+    async confirmDeleteUser() {
+      try {
+        const response = await axios.delete(
+          `${import.meta.env.VITE_API_URL}/api/user/${this.userToDelete}`,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
           }
-        } catch (error) {
+        );
+        if (response.data) {
           this.$toast.add({
-            severity: "error",
-            summary: "Error",
-            detail: "Failed to delete user",
+            severity: "success",
+            summary: "Success",
+            detail: "User deleted successfully",
             life: 3000,
           });
+          this.showDeleteUserDialog = false;
+          this.userToDelete = null;
+          this.fetchUsers();
         }
+      } catch (error) {
+        this.$toast.add({
+          severity: "error",
+          summary: "Error",
+          detail: "Failed to delete user",
+          life: 3000,
+        });
+        this.showDeleteUserDialog = false;
+        this.userToDelete = null;
       }
     },
   },
