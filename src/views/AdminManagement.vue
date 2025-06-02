@@ -147,7 +147,7 @@
               />
               <Button
                 label="Cancel"
-                class="p-button-outlined p-button-success bg-orange-400 text-50"
+                class="p-button-outlined p-button-success bg-orange-400 w-full text-50"
                 @click="showEditUserDialog = false"
               />
             </div>
