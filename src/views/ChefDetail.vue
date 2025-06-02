@@ -229,7 +229,7 @@
               </ul>
             </div>
             <div class="chef-back-button-wrap">
-              <router-link to="/Chief" class="button-primary-1 w-inline-block">
+              <router-link to="/chef" class="button-primary-1 w-inline-block">
                 <div class="button-primary-1-title">Back to Chefs</div>
                 <div class="button-primary-hover top"></div>
                 <div class="button-primary-hover bottom"></div>
@@ -244,7 +244,7 @@
           <div class="chef-not-found">
             <h2>Chef not found</h2>
             <p>Sorry, we couldn't find the chef you're looking for.</p>
-            <router-link to="/Chief" class="button-primary-1 w-inline-block">
+            <router-link to="/chef" class="button-primary-1 w-inline-block">
               <div class="button-primary-1-title">Back to Chefs</div>
               <div class="button-primary-hover top"></div>
               <div class="button-primary-hover bottom"></div>

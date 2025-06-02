@@ -50,8 +50,8 @@
                 <button class="menu-item" @click="navigateTo('/gallery')">
                   Gallery
                 </button>
-                <button class="menu-item" @click="navigateTo('/Chief')">
-                  Chief
+                <button class="menu-item" @click="navigateTo('/chef')">
+                  chef
                 </button>
                 <button class="menu-item" @click="navigateTo('/contact')">
                   Contact

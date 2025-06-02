@@ -37,7 +37,7 @@
             :style="{ '--item-index': index }"
           >
             <router-link
-              :to="`/chief/${chef.slug}`"
+              :to="`/chef/${chef.slug}`"
               class="chef-item w-inline-block"
             >
               <div class="chef-item-title-wrap">

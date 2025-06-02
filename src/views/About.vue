@@ -525,10 +525,7 @@
             role="listitem"
             class="w-dyn-item"
           >
-            <a
-              href="/chief/chef-miguel-torres"
-              class="chef-item w-inline-block"
-            >
+            <a href="/chef/chef-miguel-torres" class="chef-item w-inline-block">
               <div class="chef-item-title-wrap">
                 <div class="chef-job-title">Rising star chef</div>
                 <h3 class="chef-item-title">Chef miguel torres</h3>
@@ -561,7 +558,7 @@
             class="w-dyn-item"
           >
             <a
-              href="/chief/chef-dennis-barrett"
+              href="/chef/chef-dennis-barrett"
               class="chef-item w-inline-block"
             >
               <div class="chef-item-title-wrap">
@@ -595,7 +592,7 @@
             role="listitem"
             class="w-dyn-item"
           >
-            <a href="/chief/chef-joan-wallace" class="chef-item w-inline-block">
+            <a href="/chef/chef-joan-wallace" class="chef-item w-inline-block">
               <div class="chef-item-title-wrap">
                 <div class="chef-job-title">Pantry Chef</div>
                 <h3 class="chef-item-title">Chef Joan Wallace</h3>
