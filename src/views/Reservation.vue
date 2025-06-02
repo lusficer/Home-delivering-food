@@ -22,36 +22,36 @@
       <form class="reservation-form" @submit.prevent="submitForm">
         <div class="form-row">
           <div class="input-group">
-            <label>Name</label>
+            <h2>Name</h2>
             <input type="text" v-model="name" required />
           </div>
           <div class="input-group">
-            <label>Phone No</label>
+            <h2>Phone No</h2>
             <input type="tel" v-model="phone" required />
           </div>
         </div>
 
         <div class="form-row">
           <div class="input-group full-width">
-            <label>Email Id</label>
+            <h2>Email Id</h2>
             <input type="email" v-model="email" required />
           </div>
         </div>
 
         <div class="form-row">
           <div class="input-group">
-            <label>Date</label>
+            <h2>Date</h2>
             <input type="date" v-model="date" required />
           </div>
           <div class="input-group">
-            <label>Time</label>
+            <h2>Time</h2>
             <input type="time" v-model="time" required />
           </div>
         </div>
 
         <div class="form-row">
           <div class="input-group full-width">
-            <label>Number Of People</label>
+            <h2>Number Of People</h2>
             <input type="number" v-model="people" min="1" required />
           </div>
         </div>
