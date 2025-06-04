@@ -551,7 +551,7 @@ onMounted(() => {
 }
 
 .decoration-image_2 {
-  transform: rotate(-30deg); /* Xoay hình ảnh 30 độ */
+  transform: rotate(-30deg); /* Xoay hình ản h 30 độ */
   width: 7rem; /* Điều chỉnh kích thước nếu cần */
   height: auto;
   top: 15rem;

@@ -264,7 +264,6 @@
                     class="gradient-custom-2 w-full mb-3"
                     @click="login"
                   />
-                  <a class="text-muted" href="#!">Forgot password?</a>
                 </div>
 
                 <div
