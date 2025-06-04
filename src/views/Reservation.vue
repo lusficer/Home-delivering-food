@@ -71,7 +71,7 @@
           ><i class="pi pi-phone text-4xl"></i
         ></span>
         <div class="custom-font text-2xl" href="tel:+1234567892">
-          +123 456 7892
+          +01 598 269 4756
         </div>
       </div>
       <div class="contact-item">
