@@ -1,7 +1,7 @@
 <template>
   <NavBar></NavBar>
   <div class="hero-section">
-    <img src="../../public/reservation.jpg" class="hero-bg"> </img>
+    <img src="../../public/reservation.jpg" class="hero-bg" />
     <div class="overlay"></div>
     <div class="content-wrapper flex justify-content-center flex-wrap">
       <div class="hero-content">
@@ -65,23 +65,35 @@
   <div class="contact-opening-section">
     <!-- Contact Info -->
     <div class="contact-info" ref="contactInfoRef">
-      <h2>CONNECT WITH NVBLAST</h2>
+      <h2 class="custom-font text-6xl">CONNECT WITH NVBLAST</h2>
       <div class="contact-item">
-        <span class="icon">📞</span>
-        <a href="tel:+1234567892">+123 456 7892</a>
+        <span class="icon flex align-items-center"
+          ><i class="pi pi-phone text-4xl"></i
+        ></span>
+        <div class="custom-font text-2xl" href="tel:+1234567892">
+          +123 456 7892
+        </div>
       </div>
       <div class="contact-item">
-        <span class="icon">📧</span>
-        <a href="mailto:info@example.com">info@example.com</a>
+        <span class="icon flex align-items-center"
+          ><i class="pi pi-envelope text-4xl"></i
+        ></span>
+        <div class="custom-font text-2xl" href="mailto:info@example.com">
+          NvBlast@gmail.com
+        </div>
       </div>
       <div class="contact-item">
-        <span class="icon">📍</span>
-        <p>HS B26, Horton Ford Rd, Eidson, TN, 37731</p>
+        <span class="icon flex align-items-center"
+          ><i class="pi pi-map-marker text-4xl"></i
+        ></span>
+        <p class="custom-font text-2xl">
+          HS B26, Horton Ford Rd, Eidson, TN, 37731
+        </p>
       </div>
-      <div class="social-icons">
-        <span>📷</span>
-        <span>📘</span>
-        <span>▶️</span>
+      <div class="social-icons mt-7">
+        <span><i class="pi pi-instagram"></i></span>
+        <span><i class="pi pi-facebook"></i></span>
+        <span><i class="pi pi-youtube"></i></span>
       </div>
     </div>
 
@@ -96,10 +108,20 @@
     </div>
 
     <!-- Opening Hours -->
-    <div class="opening-hours" ref="contactHoursRef">
-      <h2>OPENING HOUR</h2>
-      <p>Mon - Sat: 11:00 am - 10 pm</p>
-      <p>Sun: 10:00 am - 12 pm</p>
+    <div class="opening-hours relative" ref="contactHoursRef">
+      <h2 class="text-6xl">OPENING HOUR</h2>
+      <p class="text-3xl">Mon - Sat: 11:00 am - 10 pm</p>
+      <p class="text-3xl">Sun: 10:00 am - 12 pm</p>
+      <img
+        src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65bcc790faa405b7b6847084_decoration-13.svg"
+        alt="Decoration"
+        class="decoration-image_1 absolute"
+      />
+      <img
+        src="https://cdn.prod.website-files.com/65b0f8cd4809ed9e260f58df/65bcc790b2e25b717228aa37_decoration-11.svg"
+        alt="Decoration"
+        class="decoration-image_2 absolute"
+      />
     </div>
   </div>
 
@@ -211,6 +233,10 @@ onMounted(() => {
 
 <style scoped>
 /* ======= Hero Section ======= */
+.custom-font {
+  font-family: "Playfair Display", serif;
+}
+
 .hero-section {
   position: relative;
   width: 100vw;
@@ -305,7 +331,7 @@ onMounted(() => {
   flex-direction: column;
 }
 
-.input-group h2{
+.input-group h2 {
   color: white;
 }
 
@@ -380,16 +406,13 @@ onMounted(() => {
 .contact-info,
 .opening-hours {
   flex: 1;
-  text-align: center;
   font-size: 18px;
   color: #5a2d50;
 }
 
 .contact-item {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 10px;
+  margin: 2rem 0;
 }
 
 .icon {
@@ -404,8 +427,10 @@ onMounted(() => {
 
 .social-icons span {
   margin: 10px;
-  font-size: 20px;
-  cursor: pointer;
+}
+
+.social-icons span i {
+  font-size: 1.5rem;
 }
 
 .image-container {
@@ -516,5 +541,20 @@ onMounted(() => {
 .show {
   opacity: 1 !important;
   transform: translateX(0) !important;
+}
+
+.decoration-image_1 {
+  transform: rotate(30deg); /* Xoay hình ảnh 30 độ */
+  width: 7rem; /* Điều chỉnh kích thước nếu cần */
+  height: auto;
+  top: -13rem;
+}
+
+.decoration-image_2 {
+  transform: rotate(-30deg); /* Xoay hình ảnh 30 độ */
+  width: 7rem; /* Điều chỉnh kích thước nếu cần */
+  height: auto;
+  top: 15rem;
+  right: 4rem;
 }
 </style>
