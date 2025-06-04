@@ -62,8 +62,8 @@
                   <!-- Call for Reservation -->
                   <div class="reservation-call">
                     <p class="call-text">CALL FOR RESERVATION</p>
-                    <a href="tel:+1234567892" class="phone-number"
-                      >+123 456 7892</a
+                    <a href="tel:+015982694756" class="phone-number"
+                      >+01 598 269 47562</a
                     >
                   </div>
 
