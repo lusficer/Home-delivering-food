@@ -1,7 +1,7 @@
 <template>
   <div class="w-screen">
     <RouterView />
-    <Toast />
+    <Toast class="mt-8" />
   </div>
 </template>
 
