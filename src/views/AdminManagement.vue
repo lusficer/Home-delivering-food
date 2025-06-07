@@ -167,8 +167,8 @@
           <template #header>
             <h2 class="dialog-header gradient-custom-2">Confirm Delete</h2>
           </template>
-          <div class="p-fluid mt-5 text-center">
-            <p>Are you sure you want to delete this user?</p>
+          <div class="p-fluid mt-5 mb-5 text-center">
+            <p class="text-2xl">Are you sure you want to delete this user?</p>
             <div class="flex justify-center gap-3">
               <Button
                 label="Yes"
