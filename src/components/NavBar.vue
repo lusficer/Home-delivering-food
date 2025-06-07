@@ -433,7 +433,7 @@
           header="User Profile"
           v-model:visible="showProfileDialog"
           modal
-          :closable="true"
+          :closable="false"
           :dismissableMask="true"
           style="width: 500px; border-radius: 15px"
           class="custom-profile-dialog"
@@ -504,7 +504,7 @@
                   />
                   <Button
                     label="Close"
-                    class="p-button-outlined p-button-success bg-orange-400 text-50"
+                    class="p-button-outlined p-button-success bg-orange-400 w-full text-50"
                     @click="showProfileDialog = false"
                   />
                 </div>
