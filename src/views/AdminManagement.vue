@@ -169,7 +169,7 @@
           </template>
           <div class="p-fluid mt-5 mb-5 text-center">
             <p class="text-2xl">Are you sure you want to delete this user?</p>
-            <div class="flex justify-center gap-3">
+            <div class="flex justify-center mt-4 gap-3">
               <Button
                 label="Yes"
                 class="gradient-custom-2 w-6"
