@@ -1,29 +1,34 @@
-# Home-delivering-food
+# Home-delivering-food 🍱
 
-This template should help get you started developing with Vue 3 in Vite.
+A food delivery web application built with Vue 3 and Vite.
 
-## Recommended IDE Setup
+---
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## 🔗 Live Application
 
-## Customize configuration
+You can use the live deployed version of the app here:
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+👉 [https://home-delivering-food.vercel.app](https://home-delivering-food.vercel.app)
 
-## Project Setup
+---
 
-```sh
+## 🔐 Test Accounts
+
+Use any of the following accounts to log in and test the app:
+
+| Username | Password |
+|----------|----------|
+| admin    | 123456   |
+| hoang    | 123456   |
+| Long123  | 123456   |
+
+---
+
+## 🚀 Project Setup (Frontend Only)
+
+Since the backend is already deployed, you only need to run the frontend locally if you want to test or develop further.
+
+### 1. Install dependencies
+
+```bash
 npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
